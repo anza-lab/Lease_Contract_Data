@@ -19816,9 +19816,9 @@
     "restore": {
       "projectUniqueName": "Lease_Contract_Extraction_Phase_I",
       "projectName": "Lease_Contract_Extraction_Phase_I",
-      "projectPath": "C:\\Users\\RPA35\\Documents\\UiPath\\Lease_Contract_Extraction_Phase_I\\.local",
+      "projectPath": "C:\\Lease_Data_101\\Lease_Contract_Data\\Lease_Contract_Extraction_Phase_I\\.local",
       "packagesPath": "C:\\Users\\RPA35\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\RPA35\\Documents\\UiPath\\Lease_Contract_Extraction_Phase_I\\.local"
+      "outputPath": "C:\\Lease_Data_101\\Lease_Contract_Data\\Lease_Contract_Extraction_Phase_I\\.local"
     },
     "frameworks": {
       "net6.0-windows7.0": {

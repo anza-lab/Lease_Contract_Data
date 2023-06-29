@@ -51,6 +51,31 @@
       "ArgumentsSectionElementsOrder": [],
       "ConstantsSectionElementsOrder": [],
       "AddedNamespaces": null
+    },
+    {
+      "Path": "Contract_Type_1.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "Lease_Input&Sequence_1",
+        "out1&Sequence_1",
+        "test1&Sequence_1",
+        "Title_Number&Sequence_1",
+        "adress_1&Sequence_1",
+        "tenant_1&Sequence_1",
+        "address_2&Sequence_1",
+        "address_3&Sequence_1",
+        "address_4&Sequence_1",
+        "lr_7&Sequence_1",
+        "edge&Sequence_1",
+        "plot&Sequence_1",
+        "Chapters&Sequence_1",
+        "index&Sequence_1",
+        "Chapter&Sequence_5",
+        "regex_dynamic&Sequence_5"
+      ],
+      "ArgumentsSectionElementsOrder": [],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
     }
   ]
 }

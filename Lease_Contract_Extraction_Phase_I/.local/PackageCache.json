@@ -33,6 +33,28 @@
     },
     {
       "Package": {
+        "Id": "UiPath.PDF.Activities",
+        "Version": "3.6.0"
+      },
+      "Assemblies": [
+        "C:\\Users\\RPA35\\.nuget\\packages\\bitmiracle.docotic.pdf\\7.5.11645\\lib/netstandard2.0/BitMiracle.Docotic.Pdf.dll",
+        "C:\\Users\\RPA35\\.nuget\\packages\\bitmiracle.libtiff.net\\2.4.649\\lib/netstandard2.0/BitMiracle.LibTiff.NET.dll",
+        "C:\\Users\\RPA35\\.nuget\\packages\\newtonsoft.json\\13.0.1\\lib/netstandard2.0/Newtonsoft.Json.dll",
+        "C:\\Users\\RPA35\\.nuget\\packages\\ntextcat\\0.3.65\\lib/netstandard2.0/NTextCat.dll",
+        "C:\\Users\\RPA35\\.nuget\\packages\\system.io.abstractions\\3.0.10\\lib/netstandard2.0/System.IO.Abstractions.dll",
+        "C:\\Users\\RPA35\\.nuget\\packages\\uipath.documentprocessing.contracts\\1.14.0\\lib/net5.0/UiPath.DocumentProcessing.Contracts.dll",
+        "C:\\Users\\RPA35\\.nuget\\packages\\uipath.documentunderstanding.digitizer\\2.0.0\\lib/net5.0/UiPath.DocumentUnderstanding.Digitizer.dll",
+        "C:\\Users\\RPA35\\.nuget\\packages\\uipath.ocr.contracts\\2.14.0\\lib/net6.0-windows7.0/UiPath.OCR.Contracts.dll",
+        "C:\\Users\\RPA35\\.nuget\\packages\\uipath.pdf.activities\\3.6.0\\lib/net5.0-windows7.0/UiPath.PDF.Activities.Design.dll",
+        "C:\\Users\\RPA35\\.nuget\\packages\\uipath.pdf.activities\\3.6.0\\lib/net5.0-windows7.0/UiPath.PDF.Activities.dll",
+        "C:\\Users\\RPA35\\.nuget\\packages\\uipath.pdf.activities\\3.6.0\\lib/net5.0-windows7.0/UiPath.PDF.Telemetry.dll",
+        "C:\\Users\\RPA35\\.nuget\\packages\\uipath.pdf.activities\\3.6.0\\lib/net5.0-windows7.0/UiPath.PDF.dll",
+        "C:\\Users\\RPA35\\.nuget\\packages\\uipath.telemetry.client\\1.5.3\\lib/netstandard2.0/TelemetryClient.dll"
+      ],
+      "Path": "C:\\Users\\RPA35\\.nuget\\packages\\uipath.pdf.activities\\3.6.0"
+    },
+    {
+      "Package": {
         "Id": "UiPath.System.Activities",
         "Version": "23.4.3"
       },
@@ -195,28 +217,6 @@
         "C:\\Users\\RPA35\\.nuget\\packages\\xceed.words.net\\2.0.21359.11160\\lib/net5.0/Xceed.Words.NET5.dll"
       ],
       "Path": "C:\\Users\\RPA35\\.nuget\\packages\\uipath.word.activities\\1.16.1"
-    },
-    {
-      "Package": {
-        "Id": "UiPath.PDF.Activities",
-        "Version": "3.6.0"
-      },
-      "Assemblies": [
-        "C:\\Users\\RPA35\\.nuget\\packages\\bitmiracle.docotic.pdf\\7.5.11645\\lib/netstandard2.0/BitMiracle.Docotic.Pdf.dll",
-        "C:\\Users\\RPA35\\.nuget\\packages\\bitmiracle.libtiff.net\\2.4.649\\lib/netstandard2.0/BitMiracle.LibTiff.NET.dll",
-        "C:\\Users\\RPA35\\.nuget\\packages\\newtonsoft.json\\13.0.1\\lib/netstandard2.0/Newtonsoft.Json.dll",
-        "C:\\Users\\RPA35\\.nuget\\packages\\ntextcat\\0.3.65\\lib/netstandard2.0/NTextCat.dll",
-        "C:\\Users\\RPA35\\.nuget\\packages\\system.io.abstractions\\3.0.10\\lib/netstandard2.0/System.IO.Abstractions.dll",
-        "C:\\Users\\RPA35\\.nuget\\packages\\uipath.documentprocessing.contracts\\1.14.0\\lib/net5.0/UiPath.DocumentProcessing.Contracts.dll",
-        "C:\\Users\\RPA35\\.nuget\\packages\\uipath.documentunderstanding.digitizer\\2.0.0\\lib/net5.0/UiPath.DocumentUnderstanding.Digitizer.dll",
-        "C:\\Users\\RPA35\\.nuget\\packages\\uipath.ocr.contracts\\2.14.0\\lib/net6.0-windows7.0/UiPath.OCR.Contracts.dll",
-        "C:\\Users\\RPA35\\.nuget\\packages\\uipath.pdf.activities\\3.6.0\\lib/net5.0-windows7.0/UiPath.PDF.Activities.Design.dll",
-        "C:\\Users\\RPA35\\.nuget\\packages\\uipath.pdf.activities\\3.6.0\\lib/net5.0-windows7.0/UiPath.PDF.Activities.dll",
-        "C:\\Users\\RPA35\\.nuget\\packages\\uipath.pdf.activities\\3.6.0\\lib/net5.0-windows7.0/UiPath.PDF.dll",
-        "C:\\Users\\RPA35\\.nuget\\packages\\uipath.pdf.activities\\3.6.0\\lib/net5.0-windows7.0/UiPath.PDF.Telemetry.dll",
-        "C:\\Users\\RPA35\\.nuget\\packages\\uipath.telemetry.client\\1.5.3\\lib/netstandard2.0/TelemetryClient.dll"
-      ],
-      "Path": "C:\\Users\\RPA35\\.nuget\\packages\\uipath.pdf.activities\\3.6.0"
     }
   ],
   "Conflicts": [],
@@ -6425,8 +6425,8 @@
       "Assemblies": [
         "C:\\Users\\RPA35\\.nuget\\packages\\uipath.pdf.activities\\3.6.0\\lib\\net5.0-windows7.0\\UiPath.PDF.Activities.Design.dll",
         "C:\\Users\\RPA35\\.nuget\\packages\\uipath.pdf.activities\\3.6.0\\lib\\net5.0-windows7.0\\UiPath.PDF.Activities.dll",
-        "C:\\Users\\RPA35\\.nuget\\packages\\uipath.pdf.activities\\3.6.0\\lib\\net5.0-windows7.0\\UiPath.PDF.dll",
-        "C:\\Users\\RPA35\\.nuget\\packages\\uipath.pdf.activities\\3.6.0\\lib\\net5.0-windows7.0\\UiPath.PDF.Telemetry.dll"
+        "C:\\Users\\RPA35\\.nuget\\packages\\uipath.pdf.activities\\3.6.0\\lib\\net5.0-windows7.0\\UiPath.PDF.Telemetry.dll",
+        "C:\\Users\\RPA35\\.nuget\\packages\\uipath.pdf.activities\\3.6.0\\lib\\net5.0-windows7.0\\UiPath.PDF.dll"
       ],
       "Path": "C:\\Users\\RPA35\\.nuget\\packages\\uipath.pdf.activities\\3.6.0"
     },
