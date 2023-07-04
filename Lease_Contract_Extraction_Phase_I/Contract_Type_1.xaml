@@ -1,4 +1,44 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Lease_Type_1" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1134,4038" sap2010:WorkflowViewState.IdRef="Lease_Type_1_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:p="http://schemas.uipath.com/workflow/activities/word" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Lease_Type_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:p="http://schemas.uipath.com/workflow/activities/word" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="purchaser" Type="InArgument(x:String)" />
+    <x:Property Name="developer" Type="InArgument(x:String)" />
+    <x:Property Name="rate_percent" Type="InArgument(x:String)" />
+    <x:Property Name="completion_date" Type="InArgument(x:String)" />
+    <x:Property Name="document_fee" Type="InArgument(x:String)" />
+    <x:Property Name="reservation_fee" Type="InArgument(x:String)" />
+    <x:Property Name="tenure" Type="InArgument(x:String)" />
+    <x:Property Name="full_purchase_price" Type="InArgument(x:String)" />
+    <x:Property Name="incentive" Type="OutArgument(x:String)" />
+  </x:Members>
+  <this:Lease_Type_1.purchaser>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Lease_Type_1.purchaser>
+  <this:Lease_Type_1.developer>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Lease_Type_1.developer>
+  <this:Lease_Type_1.rate_percent>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Lease_Type_1.rate_percent>
+  <this:Lease_Type_1.completion_date>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Lease_Type_1.completion_date>
+  <this:Lease_Type_1.document_fee>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Lease_Type_1.document_fee>
+  <this:Lease_Type_1.reservation_fee>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Lease_Type_1.reservation_fee>
+  <this:Lease_Type_1.tenure>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Lease_Type_1.tenure>
+  <this:Lease_Type_1.full_purchase_price>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Lease_Type_1.full_purchase_price>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1134,3223</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>Lease_Type_1_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -84,9 +124,12 @@
       <AssemblyReference>System.Linq.Queryable</AssemblyReference>
       <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
       <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.CodeDom</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Contract_Type_1" sap:VirtualizedContainerService.HintSize="594,3893" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Contract_Type_1" sap:VirtualizedContainerService.HintSize="496,2998" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="contract_Input" />
       <Variable x:TypeArguments="x:String" Name="out1" />
@@ -102,19 +145,16 @@
       <Variable x:TypeArguments="x:String" Name="plot" />
       <Variable x:TypeArguments="s:String[]" Default="[{&quot;&quot;}]" Name="Chapters" />
       <Variable x:TypeArguments="x:Int32" Default="3" Name="index" />
-      <Variable x:TypeArguments="x:String" Name="tenure" />
-      <Variable x:TypeArguments="x:String" Name="reservation_fee" />
-      <Variable x:TypeArguments="x:String" Name="document_fee" />
-      <Variable x:TypeArguments="x:String" Name="completion_date" />
       <Variable x:TypeArguments="x:Int32" Name="working_date_index" />
       <Variable x:TypeArguments="x:String" Name="plot_number" />
+      <Variable x:TypeArguments="x:String" Name="percent" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="532,52" sap2010:WorkflowViewState.IdRef="CommentOut_2">
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="434,52" sap2010:WorkflowViewState.IdRef="CommentOut_2">
       <ui:CommentOut.Body>
         <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="592,163" sap2010:WorkflowViewState.IdRef="Sequence_4">
           <sap:WorkflowViewStateService.ViewState>
@@ -154,9 +194,73 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:CommentOut>
-    <ui:ReadPDFText DisplayName="Read PDF Text" FileName="NEW - BDW HTB (England) 2021-2023 Contract (Plot 100(116686280.1) (002).pdf" sap:VirtualizedContainerService.HintSize="532,60" sap2010:WorkflowViewState.IdRef="ReadPDFText_1" PreserveFormatting="True" Range="All" Text="[contract_Input]" />
-    <ui:WriteTextFile File="{x:Null}" DisplayName="Write Text File" FileName="contract_canalquarter.txt" sap:VirtualizedContainerService.HintSize="532,133" sap2010:WorkflowViewState.IdRef="WriteTextFile_1" Text="[contract_Input]" />
-    <Assign sap:VirtualizedContainerService.HintSize="532,82" sap2010:WorkflowViewState.IdRef="Assign_21">
+    <ui:ReadPDFText DisplayName="Read PDF Text" FileName="NEW - BDW HTB (England) 2021-2023 Contract (Plot 100(116686280.1) (002).pdf" sap:VirtualizedContainerService.HintSize="434,60" sap2010:WorkflowViewState.IdRef="ReadPDFText_1" PreserveFormatting="True" Range="All" Text="[contract_Input]" />
+    <ui:WriteTextFile File="{x:Null}" DisplayName="Write Text File" FileName="contract_canalquarter.txt" sap:VirtualizedContainerService.HintSize="434,133" sap2010:WorkflowViewState.IdRef="WriteTextFile_1" Text="[contract_Input]" />
+    <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_32">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[developer]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[contract_Input.Substring(contract_Input.IndexOf(System.Text.RegularExpressions.Regex.Match( contract_Input, """Seller or We or Us or Our""").Value)+("Seller or We or Us or Our").Length+10,500).trim.Split({Environment.NewLine},stringsplitoptions.none)(0).Trim.split("whose".ToCharArray)(0)]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_35">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[developer]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[System.Text.RegularExpressions.Regex.Replace(developer.Trim, "\s+", " ")]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_36">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[purchaser]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[contract_Input.Substring(contract_Input.IndexOf(System.Text.RegularExpressions.Regex.Match( contract_Input, """Buyer or You or Your""").Value)+("Buyer or You or Your").Length+10,500).trim.Split({Environment.NewLine},stringsplitoptions.none)(0).Trim.split("of".ToCharArray)(0)]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_37">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[purchaser]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[System.Text.RegularExpressions.Regex.Replace(purchaser.Trim, "\s+", " ")]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_38">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[full_purchase_price]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[contract_Input.Substring(contract_Input.IndexOf(System.Text.RegularExpressions.Regex.Match( contract_Input, """Full Purchase Price""").Value)+("Full Purchase Price").Length+10,500).trim.Split({Environment.NewLine},stringsplitoptions.none)(0).Trim.split("of".ToCharArray)(0)]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_39">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[full_purchase_price]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[System.Text.RegularExpressions.Regex.Replace(full_purchase_price.Trim, "\s+", " ")]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_34">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[rate_percent]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[contract_Input.Substring(contract_Input.IndexOf(System.Text.RegularExpressions.Regex.Match( contract_Input, "6.2\s{5,10}").Value),100).trim]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_33">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[rate_percent]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[rate_percent.Substring(rate_percent.IndexOf("rate of")+7,5).Trim.Split("".ToCharArray)(0)]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_21">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[tenure]</OutArgument>
       </Assign.To>
@@ -164,7 +268,7 @@
         <InArgument x:TypeArguments="x:String">[contract_Input.Substring(contract_Input.IndexOf(System.Text.RegularExpressions.Regex.Match( contract_Input, """Tenure"" :").Value),100).trim]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign sap:VirtualizedContainerService.HintSize="532,82" sap2010:WorkflowViewState.IdRef="Assign_22">
+    <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_22">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[tenure]</OutArgument>
       </Assign.To>
@@ -172,7 +276,7 @@
         <InArgument x:TypeArguments="x:String">[tenure.Split({Environment.NewLine},stringsplitoptions.none)(0).Trim]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign sap:VirtualizedContainerService.HintSize="532,82" sap2010:WorkflowViewState.IdRef="Assign_23">
+    <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_23">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[tenure]</OutArgument>
       </Assign.To>
@@ -180,7 +284,7 @@
         <InArgument x:TypeArguments="x:String">[System.Text.RegularExpressions.Regex.Split( tenure, "\s{5,10}").Last]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign sap:VirtualizedContainerService.HintSize="532,82" sap2010:WorkflowViewState.IdRef="Assign_3">
+    <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_3">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[reservation_fee]</OutArgument>
       </Assign.To>
@@ -188,7 +292,7 @@
         <InArgument x:TypeArguments="x:String">[contract_Input.Substring(contract_Input.IndexOf(System.Text.RegularExpressions.Regex.Match( contract_Input, "Reduced Purchase Price(.*):").Value),1000)]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign sap:VirtualizedContainerService.HintSize="532,82" sap2010:WorkflowViewState.IdRef="Assign_25">
+    <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_25">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[reservation_fee]</OutArgument>
       </Assign.To>
@@ -196,7 +300,7 @@
         <InArgument x:TypeArguments="x:String">[reservation_fee.Substring(reservation_fee.IndexOf("Reservation Fee"),700)]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign sap:VirtualizedContainerService.HintSize="532,82" sap2010:WorkflowViewState.IdRef="Assign_27">
+    <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_27">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[document_fee]</OutArgument>
       </Assign.To>
@@ -204,7 +308,7 @@
         <InArgument x:TypeArguments="x:String">[reservation_fee.Substring(reservation_fee.IndexOf("Document Fee"),200)]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign sap:VirtualizedContainerService.HintSize="532,82" sap2010:WorkflowViewState.IdRef="Assign_28">
+    <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_28">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[document_fee]</OutArgument>
       </Assign.To>
@@ -212,7 +316,7 @@
         <InArgument x:TypeArguments="x:String">[document_fee.Split({Environment.NewLine},stringsplitoptions.none)(0).Trim.Split(" ".ToCharArray).Last]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign sap:VirtualizedContainerService.HintSize="532,82" sap2010:WorkflowViewState.IdRef="Assign_26">
+    <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_26">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[reservation_fee]</OutArgument>
       </Assign.To>
@@ -220,7 +324,7 @@
         <InArgument x:TypeArguments="x:String">[reservation_fee.Split({Environment.NewLine},stringsplitoptions.none)(0).Trim.Split(" ".ToCharArray).Last]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign sap:VirtualizedContainerService.HintSize="532,82" sap2010:WorkflowViewState.IdRef="Assign_29">
+    <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_29">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[completion_date]</OutArgument>
       </Assign.To>
@@ -228,7 +332,7 @@
         <InArgument x:TypeArguments="x:String">[contract_Input.Substring(contract_Input.IndexOf(System.Text.RegularExpressions.Regex.Match( contract_Input, "\s{5,10}5.1.1").Value),1000)]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign sap:VirtualizedContainerService.HintSize="532,82" sap2010:WorkflowViewState.IdRef="Assign_30">
+    <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_30">
       <Assign.To>
         <OutArgument x:TypeArguments="x:Int32">[working_date_index]</OutArgument>
       </Assign.To>
@@ -236,7 +340,23 @@
         <InArgument x:TypeArguments="x:Int32">[completion_date.IndexOf("working days")]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign sap:VirtualizedContainerService.HintSize="532,82" sap2010:WorkflowViewState.IdRef="Assign_31">
+    <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_40">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[incentive]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[contract_input.Substring(contract_input.IndexOf("Extras (if any)"),200).Split({Environment.NewLine},stringsplitoptions.none)(0).Trim]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_42">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[incentive]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[System.Text.RegularExpressions.Regex.Split( incentive, "\s{5,10}").Last]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_31">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[completion_date]</OutArgument>
       </Assign.To>
@@ -244,133 +364,5 @@
         <InArgument x:TypeArguments="x:String">[completion_date.substring(working_date_index-10,10).trim.Split(" ".ToCharArray).Last.trim+" working days"]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign sap:VirtualizedContainerService.HintSize="532,82" sap2010:WorkflowViewState.IdRef="Assign_6">
-      <Assign.To>
-        <OutArgument x:TypeArguments="x:String">[address_2]</OutArgument>
-      </Assign.To>
-      <Assign.Value>
-        <InArgument x:TypeArguments="x:String">[contract_Input.Substring(contract_Input.IndexOf("LR3. PARTIES TO THIS LEASE")+("LR3. PARTIES TO THIS LEASE").Length,contract_Input.IndexOf("LR4. PROPERTY")-contract_Input.IndexOf("LR3. PARTIES TO THIS LEASE"))]</InArgument>
-      </Assign.Value>
-    </Assign>
-    <Assign sap:VirtualizedContainerService.HintSize="532,82" sap2010:WorkflowViewState.IdRef="Assign_7">
-      <Assign.To>
-        <OutArgument x:TypeArguments="x:String">[address_2]</OutArgument>
-      </Assign.To>
-      <Assign.Value>
-        <InArgument x:TypeArguments="x:String">[address_2.Substring(address_2.IndexOf("CANAL QUARTER MANAGEMENT COMPANY LIMITED"),address_2.IndexOf("LR4. PROPERTY")-address_2.IndexOf("CANAL QUARTER MANAGEMENT COMPANY LIMITED")).Trim]</InArgument>
-      </Assign.Value>
-    </Assign>
-    <Assign sap:VirtualizedContainerService.HintSize="532,82" sap2010:WorkflowViewState.IdRef="Assign_8">
-      <Assign.To>
-        <OutArgument x:TypeArguments="x:String">[address_3]</OutArgument>
-      </Assign.To>
-      <Assign.Value>
-        <InArgument x:TypeArguments="x:String">[contract_Input.Substring(contract_Input.IndexOf("LR4. PROPERTY")+("LR4. PROPERTY").Length,contract_Input.IndexOf("LR5. PRESCRIBED STATEMENTS ETC.")-contract_Input.IndexOf("LR4. PROPERTY")).Trim]</InArgument>
-      </Assign.Value>
-    </Assign>
-    <Assign sap:VirtualizedContainerService.HintSize="532,82" sap2010:WorkflowViewState.IdRef="Assign_9">
-      <Assign.To>
-        <OutArgument x:TypeArguments="x:String">[address_3]</OutArgument>
-      </Assign.To>
-      <Assign.Value>
-        <InArgument x:TypeArguments="x:String">[address_3.Substring(address_3.IndexOf("Plot"),address_3.Length-address_3.IndexOf("Plot")).Substring(0,address_3.Substring(address_3.IndexOf("Plot"),address_3.Length-address_3.IndexOf("Plot")).IndexOf("and")).Replace("which has a postal address of","").Trim]</InArgument>
-      </Assign.Value>
-    </Assign>
-    <Assign sap:VirtualizedContainerService.HintSize="532,82" sap2010:WorkflowViewState.IdRef="Assign_10">
-      <Assign.To>
-        <OutArgument x:TypeArguments="x:String">[address_4]</OutArgument>
-      </Assign.To>
-      <Assign.Value>
-        <InArgument x:TypeArguments="x:String">[contract_Input.Substring(contract_Input.IndexOf("LR6. TERM FOR WHICH THE ")+("LR6. TERM FOR WHICH THE ").Length,contract_Input.IndexOf("LR7. PREMIUM")-contract_Input.IndexOf("LR6. TERM FOR WHICH THE")).Trim.Replace("PROPERTY IS LEASED","").Trim.Replace("LR7. PREMIUM","").Trim]</InArgument>
-      </Assign.Value>
-    </Assign>
-    <Assign sap:VirtualizedContainerService.HintSize="532,82" sap2010:WorkflowViewState.IdRef="Assign_11">
-      <Assign.To>
-        <OutArgument x:TypeArguments="x:String">[lr_7]</OutArgument>
-      </Assign.To>
-      <Assign.Value>
-        <InArgument x:TypeArguments="x:String">[contract_Input.Substring(contract_Input.IndexOf("LR7. PREMIUM")+("LR7. PREMIUM").Length,contract_Input.IndexOf("LR8. PROHIBITIONS OR RESTRICTIONS")-contract_Input.IndexOf("LR7. PREMIUM")-("LR7. PREMIUM").Length).Trim.Replace("LR8. PROHIBITIONS OR RESTRICTIONS","").Trim.Replace("LR7. PREMIUM","").Trim]</InArgument>
-      </Assign.Value>
-    </Assign>
-    <Assign sap:VirtualizedContainerService.HintSize="532,82" sap2010:WorkflowViewState.IdRef="Assign_12">
-      <Assign.To>
-        <OutArgument x:TypeArguments="x:String">[edge]</OutArgument>
-      </Assign.To>
-      <Assign.Value>
-        <InArgument x:TypeArguments="x:String">[System.Text.RegularExpressions.Regex.Split( contract_Input, "\s{10,555}CHAPTER 2: YOUR PROPERTY")(1)]</InArgument>
-      </Assign.Value>
-    </Assign>
-    <Assign sap:VirtualizedContainerService.HintSize="532,82" sap2010:WorkflowViewState.IdRef="Assign_13">
-      <Assign.To>
-        <OutArgument x:TypeArguments="x:String">[plot]</OutArgument>
-      </Assign.To>
-      <Assign.Value>
-        <InArgument x:TypeArguments="x:String">[edge.Substring(edge.indexof("shown")+5,edge.indexof("and numbered")-edge.indexof("shown")-5).Trim]</InArgument>
-      </Assign.Value>
-    </Assign>
-    <ui:InterruptibleDoWhile CurrentIndex="{x:Null}" Condition="[index&lt;13]" DisplayName="Do While" sap:VirtualizedContainerService.HintSize="532,847" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_1">
-      <ui:InterruptibleDoWhile.Body>
-        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="496,681" sap2010:WorkflowViewState.IdRef="Sequence_5">
-          <Sequence.Variables>
-            <Variable x:TypeArguments="x:String" Name="Chapter" />
-            <Variable x:TypeArguments="x:String" Name="regex_dynamic" />
-          </Sequence.Variables>
-          <sap:WorkflowViewStateService.ViewState>
-            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            </scg:Dictionary>
-          </sap:WorkflowViewStateService.ViewState>
-          <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_17">
-            <Assign.To>
-              <OutArgument x:TypeArguments="x:String">[regex_dynamic]</OutArgument>
-            </Assign.To>
-            <Assign.Value>
-              <InArgument x:TypeArguments="x:String">["(?m)(?&lt;=\bCHAPTER "+index.ToString+":).*$"]</InArgument>
-            </Assign.Value>
-          </Assign>
-          <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_14">
-            <Assign.To>
-              <OutArgument x:TypeArguments="x:String">[Chapter]</OutArgument>
-            </Assign.To>
-            <Assign.Value>
-              <InArgument x:TypeArguments="x:String">["CHAPTER "+index.ToString+": "+System.Text.RegularExpressions.Regex.Match( contract_Input, regex_dynamic).Value.Trim]</InArgument>
-            </Assign.Value>
-          </Assign>
-          <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_19">
-            <Assign.To>
-              <OutArgument x:TypeArguments="x:String">[Chapter]</OutArgument>
-            </Assign.To>
-            <Assign.Value>
-              <InArgument x:TypeArguments="x:String">[System.Text.RegularExpressions.Regex.Split( Chapter, "\s{10,555}")(0)]</InArgument>
-            </Assign.Value>
-          </Assign>
-          <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_16">
-            <Assign.To>
-              <OutArgument x:TypeArguments="s:String[]">[Chapters]</OutArgument>
-            </Assign.To>
-            <Assign.Value>
-              <InArgument x:TypeArguments="s:String[]">[Chapters.Concat({Chapter}).ToArray]</InArgument>
-            </Assign.Value>
-          </Assign>
-          <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_18">
-            <Assign.To>
-              <OutArgument x:TypeArguments="x:Int32">[index]</OutArgument>
-            </Assign.To>
-            <Assign.Value>
-              <InArgument x:TypeArguments="x:Int32">[index+1]</InArgument>
-            </Assign.Value>
-          </Assign>
-        </Sequence>
-      </ui:InterruptibleDoWhile.Body>
-    </ui:InterruptibleDoWhile>
-    <Assign sap:VirtualizedContainerService.HintSize="532,82" sap2010:WorkflowViewState.IdRef="Assign_20">
-      <Assign.To>
-        <OutArgument x:TypeArguments="s:String[]">[Chapters]</OutArgument>
-      </Assign.To>
-      <Assign.Value>
-        <InArgument x:TypeArguments="s:String[]">[Chapters.Where(Function(x) Not String.IsNullOrWhiteSpace(x)).ToArray]</InArgument>
-      </Assign.Value>
-    </Assign>
-    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="532,90" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[contract_Input]" />
   </Sequence>
 </Activity>

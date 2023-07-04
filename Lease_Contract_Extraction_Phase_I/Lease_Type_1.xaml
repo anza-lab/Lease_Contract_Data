@@ -8,7 +8,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1134,4266</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1134,9878</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Lease_Type_1_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -112,9 +112,14 @@
       <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
       <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
       <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>System.CodeDom</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.ViewModels</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Lease_Type_1" sap:VirtualizedContainerService.HintSize="546,4161" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Lease_Type_1" sap:VirtualizedContainerService.HintSize="546,9813" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="Lease_Input" />
       <Variable x:TypeArguments="x:String" Name="out1" />
@@ -134,6 +139,20 @@
       <Variable x:TypeArguments="s:String[]" Name="groud_array" />
       <Variable x:TypeArguments="x:String" Name="dmc" />
       <Variable x:TypeArguments="x:String" Name="plot_number" />
+      <Variable x:TypeArguments="x:Int32" Name="row_index" />
+      <Variable x:TypeArguments="sd:DataTable" Name="current_datatable" />
+      <Variable x:TypeArguments="x:String" Name="postal_address" />
+      <Variable x:TypeArguments="x:String" Name="type_of_property" />
+      <Variable x:TypeArguments="x:String" Name="parking_space" />
+      <Variable x:TypeArguments="x:String" Name="purchaser" />
+      <Variable x:TypeArguments="x:String" Name="developer" />
+      <Variable x:TypeArguments="x:String" Name="rate" />
+      <Variable x:TypeArguments="x:String" Name="completion_date" />
+      <Variable x:TypeArguments="x:String" Name="document_fee" />
+      <Variable x:TypeArguments="x:String" Name="reservation_fee" />
+      <Variable x:TypeArguments="x:String" Name="tenure" />
+      <Variable x:TypeArguments="x:String" Name="full_purchase_price" />
+      <Variable x:TypeArguments="x:String" Name="incentive" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -180,13 +199,23 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:CommentOut>
-    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="484,52" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_3" InstanceCachePeriod="3000" WorkbookPath="Data\Lease_Master.xlsx">
+    <ui:ReadPDFText DisplayName="Read PDF Text" FileName="Lease - 100 Kingsbrook 3.12(116372013.1).pdf" sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="ReadPDFText_1" PreserveFormatting="True" Range="All" Text="[Lease_Input]" />
+    <ui:WriteTextFile File="{x:Null}" DisplayName="Write Text File" FileName="lease_canalquarter.txt" sap:VirtualizedContainerService.HintSize="484,133" sap2010:WorkflowViewState.IdRef="WriteTextFile_1" Text="[Lease_Input]" />
+    <Assign sap:VirtualizedContainerService.HintSize="484,81" sap2010:WorkflowViewState.IdRef="Assign_27">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[plot_number]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[Lease_Input.Substring(Lease_Input.IndexOf("Plot Number"),100).Split({Environment.NewLine},stringsplitoptions.none)(0).Trim.split(" ".ToCharArray).Last]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="484,52" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_3" InstanceCachePeriod="3000" WorkbookPath="Data\Plot100_Contract_Lease_Master.xlsx">
       <ui:ExcelApplicationScope.Body>
         <ActivityAction x:TypeArguments="ui:WorkbookApplication">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="450,525" sap2010:WorkflowViewState.IdRef="Sequence_11">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="548,913" sap2010:WorkflowViewState.IdRef="Sequence_11">
             <Sequence.Variables>
               <Variable x:TypeArguments="sd:DataTable" Name="current_datatable" />
             </Sequence.Variables>
@@ -195,22 +224,75 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:ExcelReadRange AddHeaders="True" DataTable="[current_datatable]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="388,60" sap2010:WorkflowViewState.IdRef="ExcelReadRange_2" SheetName="Sheet1">
+            <ui:ExcelReadRange AddHeaders="True" DataTable="[current_datatable]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="486,60" sap2010:WorkflowViewState.IdRef="ExcelReadRange_2" SheetName="Sheet1">
               <ui:ExcelReadRange.Range>
                 <InArgument x:TypeArguments="x:String">
                   <Literal x:TypeArguments="x:String" Value="" />
                 </InArgument>
               </ui:ExcelReadRange.Range>
             </ui:ExcelReadRange>
-            <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{plot}]" DataTable="[current_datatable]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="388,186" sap2010:WorkflowViewState.IdRef="AddDataRow_1">
+            <ui:LookupDataTable CellValue="{x:Null}" LookupColumnIndex="{x:Null}" LookupDataColumn="{x:Null}" TargetColumnIndex="{x:Null}" TargetColumnName="{x:Null}" TargetDataColumn="{x:Null}" DataTable="[current_datatable]" DisplayName="Lookup Data Table" sap:VirtualizedContainerService.HintSize="486,292" sap2010:WorkflowViewState.IdRef="LookupDataTable_2" LookupColumnName="Plot_Number" LookupValue="[plot_number]" RowIndex="[row_index]">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-            </ui:AddDataRow>
-            <ui:ExcelWriteRange AddHeaders="True" DataTable="[current_datatable]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="388,88" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_2" SheetName="Sheet1" StartingCell="A1" />
+            </ui:LookupDataTable>
+            <If Condition="[row_index=-1]" sap:VirtualizedContainerService.HintSize="486,52" sap2010:WorkflowViewState.IdRef="If_2">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <Sequence sap:VirtualizedContainerService.HintSize="300,232" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{plot_number}]" DataTable="[current_datatable]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="258,52" sap2010:WorkflowViewState.IdRef="AddDataRow_1">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:AddDataRow>
+                  <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{plot_number}]" DataTable="[current_datatable]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="258,52" sap2010:WorkflowViewState.IdRef="AddDataRow_2">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:AddDataRow>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence sap:VirtualizedContainerService.HintSize="300,80" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </Sequence>
+              </If.Else>
+            </If>
+            <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="486,278" sap2010:WorkflowViewState.IdRef="CommentOut_4">
+              <ui:CommentOut.Body>
+                <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="450,199" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:ExcelWriteRange AddHeaders="True" DataTable="[current_datatable]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="388,88" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_2" SheetName="Sheet1" StartingCell="A1" />
+                </Sequence>
+              </ui:CommentOut.Body>
+            </ui:CommentOut>
           </Sequence>
         </ActivityAction>
       </ui:ExcelApplicationScope.Body>
@@ -221,17 +303,39 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:ExcelApplicationScope>
-    <ui:ReadPDFText DisplayName="Read PDF Text" FileName="Lease - 100 Kingsbrook 3.12(116372013.1).pdf" sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="ReadPDFText_1" PreserveFormatting="True" Range="All" Text="[Lease_Input]" />
-    <ui:WriteTextFile File="{x:Null}" DisplayName="Write Text File" FileName="lease_canalquarter.txt" sap:VirtualizedContainerService.HintSize="484,133" sap2010:WorkflowViewState.IdRef="WriteTextFile_1" Text="[Lease_Input]" />
-    <Assign sap:VirtualizedContainerService.HintSize="484,82" sap2010:WorkflowViewState.IdRef="Assign_27">
+    <Assign sap:VirtualizedContainerService.HintSize="484,82" sap2010:WorkflowViewState.IdRef="Assign_35">
       <Assign.To>
-        <OutArgument x:TypeArguments="x:String">[plot_number]</OutArgument>
+        <OutArgument x:TypeArguments="x:String">[parking_space]</OutArgument>
       </Assign.To>
       <Assign.Value>
-        <InArgument x:TypeArguments="x:String">[Lease_Input.Substring(Lease_Input.IndexOf("Plot Number"),100).Split({Environment.NewLine},stringsplitoptions.none)(0).Trim.split(" ".ToCharArray).Last]</InArgument>
+        <InArgument x:TypeArguments="x:String">[System.Text.RegularExpressions.Regex.Split( lease_input, "\s{10,555}CHAPTER 3:")(1)]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign sap:VirtualizedContainerService.HintSize="484,82" sap2010:WorkflowViewState.IdRef="Assign_3">
+    <Assign sap:VirtualizedContainerService.HintSize="484,82" sap2010:WorkflowViewState.IdRef="Assign_36">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[parking_space]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[parking_space.Substring(parking_space.IndexOf(System.Text.RegularExpressions.Regex.Match( parking_space, "1. ").Value)+3,500).Trim.split(",".ToCharArray)(0).replace("If a","").trim]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="484,81" sap2010:WorkflowViewState.IdRef="Assign_33">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[type_of_property]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[System.Text.RegularExpressions.Regex.Split( lease_input, "\s{10,555}CHAPTER 2: YOUR PROPERTY")(1)]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="484,81" sap2010:WorkflowViewState.IdRef="Assign_34">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[type_of_property]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[type_of_property.Substring(type_of_property.indexof("YOUR PROPERTY is the")+("YOUR PROPERTY is the").Length,type_of_property.indexof("numbered")-type_of_property.indexof("YOUR PROPERTY is the")-("YOUR PROPERTY is the").Length).Trim]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="484,81" sap2010:WorkflowViewState.IdRef="Assign_3">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[Title_Number]</OutArgument>
       </Assign.To>
@@ -271,12 +375,28 @@
         <InArgument x:TypeArguments="x:String">[address_2.Substring(address_2.IndexOf("CANAL QUARTER MANAGEMENT COMPANY LIMITED"),address_2.IndexOf("LR4. PROPERTY")-address_2.IndexOf("CANAL QUARTER MANAGEMENT COMPANY LIMITED")).Trim]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign sap:VirtualizedContainerService.HintSize="484,82" sap2010:WorkflowViewState.IdRef="Assign_8">
+    <Assign sap:VirtualizedContainerService.HintSize="484,81" sap2010:WorkflowViewState.IdRef="Assign_8">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[address_3]</OutArgument>
       </Assign.To>
       <Assign.Value>
         <InArgument x:TypeArguments="x:String">[Lease_Input.Substring(Lease_Input.IndexOf("LR4. PROPERTY")+("LR4. PROPERTY").Length,Lease_Input.IndexOf("LR5. PRESCRIBED STATEMENTS ETC.")-Lease_Input.IndexOf("LR4. PROPERTY")).Trim]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="484,81" sap2010:WorkflowViewState.IdRef="Assign_28">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[postal_address]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[address_3.Substring(address_3.IndexOf("Plot"),address_3.Length-address_3.IndexOf("Plot")).Substring(0,address_3.Substring(address_3.IndexOf("Plot"),address_3.Length-address_3.IndexOf("Plot")).IndexOf("and")).Trim]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="484,81" sap2010:WorkflowViewState.IdRef="Assign_29">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[postal_address]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[postal_address.Substring(0,postal_address.IndexOf("which"))]</InArgument>
       </Assign.Value>
     </Assign>
     <Assign sap:VirtualizedContainerService.HintSize="484,82" sap2010:WorkflowViewState.IdRef="Assign_9">
@@ -285,6 +405,30 @@
       </Assign.To>
       <Assign.Value>
         <InArgument x:TypeArguments="x:String">[address_3.Substring(address_3.IndexOf("Plot"),address_3.Length-address_3.IndexOf("Plot")).Substring(0,address_3.Substring(address_3.IndexOf("Plot"),address_3.Length-address_3.IndexOf("Plot")).IndexOf("and")).Replace("which has a postal address of","").Trim]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="484,82" sap2010:WorkflowViewState.IdRef="Assign_30">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[postal_address]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[address_3.Replace(postal_address,"").trim]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="484,82" sap2010:WorkflowViewState.IdRef="Assign_31">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[postal_address]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[String.Join(" " ,Split(postal_address,Environment.NewLine))]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="484,82" sap2010:WorkflowViewState.IdRef="Assign_32">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[postal_address]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[System.Text.RegularExpressions.Regex.Replace(postal_address.Trim, "\s+", " ")]</InArgument>
       </Assign.Value>
     </Assign>
     <Assign sap:VirtualizedContainerService.HintSize="484,82" sap2010:WorkflowViewState.IdRef="Assign_10">
@@ -321,7 +465,7 @@
     </Assign>
     <ui:InterruptibleDoWhile CurrentIndex="{x:Null}" Condition="[index&lt;13]" DisplayName="Do While" sap:VirtualizedContainerService.HintSize="484,52" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_1">
       <ui:InterruptibleDoWhile.Body>
-        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="496,675" sap2010:WorkflowViewState.IdRef="Sequence_5">
+        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="496,681" sap2010:WorkflowViewState.IdRef="Sequence_5">
           <Sequence.Variables>
             <Variable x:TypeArguments="x:String" Name="Chapter" />
             <Variable x:TypeArguments="x:String" Name="regex_dynamic" />
@@ -464,17 +608,44 @@
         <InArgument x:TypeArguments="x:String">[dmc.Substring(0,dmc.IndexOf("or")).Trim]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="484,1205" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" InstanceCachePeriod="3000" WorkbookPath="Data\Lease_Master.xlsx">
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Contract_Type_1.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="484,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Contract_Type_1.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="purchaser">
+          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="purchaser" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="developer">
+          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="developer" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="rate_percent">
+          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="rate" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="completion_date">
+          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="completion_date" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="document_fee">
+          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="document_fee" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="reservation_fee">
+          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="reservation_fee" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="tenure">
+          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="tenure" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="full_purchase_price">
+          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="full_purchase_price" />
+        </InArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="incentive">
+          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="incentive" />
+        </OutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="484,5613" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" InstanceCachePeriod="3000" WorkbookPath="Data\Lease_Master.xlsx">
       <ui:ExcelApplicationScope.Body>
         <ActivityAction x:TypeArguments="ui:WorkbookApplication">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="450,1095" sap2010:WorkflowViewState.IdRef="Sequence_10">
-            <Sequence.Variables>
-              <Variable x:TypeArguments="sd:DataTable" Name="current_datatable" />
-              <Variable x:TypeArguments="x:Int32" Name="row_index" />
-            </Sequence.Variables>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="450,5503" sap2010:WorkflowViewState.IdRef="Sequence_10">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -488,7 +659,7 @@
                 </InArgument>
               </ui:ExcelReadRange.Range>
             </ui:ExcelReadRange>
-            <ui:LookupDataTable CellValue="{x:Null}" LookupColumnIndex="{x:Null}" LookupDataColumn="{x:Null}" TargetColumnIndex="{x:Null}" TargetColumnName="{x:Null}" TargetDataColumn="{x:Null}" DataTable="[current_datatable]" DisplayName="Lookup Data Table" sap:VirtualizedContainerService.HintSize="388,292" sap2010:WorkflowViewState.IdRef="LookupDataTable_1" LookupColumnName="Plot_Number" LookupValue="[plot]" RowIndex="[row_index]">
+            <ui:LookupDataTable CellValue="{x:Null}" LookupColumnIndex="{x:Null}" LookupDataColumn="{x:Null}" TargetColumnIndex="{x:Null}" TargetColumnName="{x:Null}" TargetDataColumn="{x:Null}" DataTable="[current_datatable]" DisplayName="Lookup Data Table" sap:VirtualizedContainerService.HintSize="388,292" sap2010:WorkflowViewState.IdRef="LookupDataTable_1" LookupColumnName="Plot_Number" LookupValue="101" RowIndex="[row_index]">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -496,7 +667,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </ui:LookupDataTable>
-            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="[Title_Number]" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="388,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_1" Row="[current_datatable(row_index)]" Value="[&quot;Title&quot;]">
+            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Property" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="388,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_1" Row="[current_datatable(row_index)]" Value="[address_3]">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -504,7 +675,26 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </ui:UpdateRowItem>
-            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Purchase Price or Sale Price" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="388,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_2" Row="[current_datatable(row_index)]" Value="[&quot;Could not extract Purchase/Sale Price&quot;]" />
+            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Postal Address" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="388,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_2" Row="[current_datatable(row_index)]" Value="[postal_address]" />
+            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Developer" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="388,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_3" Row="[current_datatable(row_index)]" Value="[developer]" />
+            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Purchaser" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="388,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_4" Row="[current_datatable(row_index)]" Value="[purchaser]" />
+            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Price" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="388,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_18" Row="[current_datatable(row_index)]" Value="[full_purchase_price]" />
+            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Reservation Fee paid" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="388,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_19" Row="[current_datatable(row_index)]" Value="[reservation_fee]" />
+            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Document Fee payable to Developer" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="388,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_20" Row="[current_datatable(row_index)]" Value="[document_fee]" />
+            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Incentives" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="388,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_21" Row="[current_datatable(row_index)]" Value="[incentive]" />
+            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Ground Rent" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="388,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_6" Row="[current_datatable(row_index)]" Value="[groud_rent]" />
+            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Plot" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="388,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_7" Row="[current_datatable(row_index)]" Value="[edge]" />
+            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Title" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="388,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_22" Row="[current_datatable(row_index)]" Value="[tenure]" />
+            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Title Number" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="388,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_8" Row="[current_datatable(row_index)]" Value="[Title_Number]" />
+            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Landlord" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="388,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_9" Row="[current_datatable(row_index)]" Value="[adress_1]" />
+            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Term of Lease" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="388,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_10" Row="[current_datatable(row_index)]" Value="[address_4]" />
+            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Residents Management Company (RMC)" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="388,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_11" Row="[current_datatable(row_index)]" Value="[address_2]" />
+            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Development  Management Company (DMC)" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="388,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_12" Row="[current_datatable(row_index)]" Value="[dmc]" />
+            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Rights granted for the benefit of this property" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="388,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_13" Row="[current_datatable(row_index)]" Value="[Chapters(0)]" />
+            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Rights reserved in favour of the Landlord and others" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="388,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_14" Row="[current_datatable(row_index)]" Value="[Chapters(0)]" />
+            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Covenants and other obligations of the Tenant(Chapter 5)" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="388,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_15" Row="[current_datatable(row_index)]" Value="[Chapters(2)]" />
+            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Covenants and other obligations of the Tenant(Chapter 9)" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="388,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_16" Row="[current_datatable(row_index)]" Value="[Chapters(6)]" />
+            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Covenants and other obligations of the Tenant(Chapter 10)" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="388,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_17" Row="[current_datatable(row_index)]" Value="[Chapters(7)]" />
             <ui:ExcelWriteRange AddHeaders="True" DataTable="[current_datatable]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="388,88" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_1" SheetName="Sheet1" StartingCell="A1" />
           </Sequence>
         </ActivityAction>
