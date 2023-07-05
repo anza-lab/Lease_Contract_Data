@@ -1,6 +1,7 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="Lease_Type_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:p="http://schemas.uipath.com/workflow/activities/word" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_plot_number" Type="InArgument(x:String)" />
+    <x:Property Name="BreakTriggerScopeInArgument" Type="InArgument(x:String)" />
   </x:Members>
   <this:Lease_Type_1.in_plot_number>
     <InArgument x:TypeArguments="x:String" />
@@ -8,7 +9,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1134,9878</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1134,15554</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Lease_Type_1_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -117,9 +118,10 @@
       <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities.ViewModels</AssemblyReference>
+      <AssemblyReference>System.Data.SqlClient</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Lease_Type_1" sap:VirtualizedContainerService.HintSize="546,9813" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Lease_Type_1" sap:VirtualizedContainerService.HintSize="648,15489" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="Lease_Input" />
       <Variable x:TypeArguments="x:String" Name="out1" />
@@ -159,7 +161,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="484,52" sap2010:WorkflowViewState.IdRef="CommentOut_2">
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="586,52" sap2010:WorkflowViewState.IdRef="CommentOut_2">
       <ui:CommentOut.Body>
         <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="592,163" sap2010:WorkflowViewState.IdRef="Sequence_4">
           <sap:WorkflowViewStateService.ViewState>
@@ -199,9 +201,9 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:CommentOut>
-    <ui:ReadPDFText DisplayName="Read PDF Text" FileName="Lease - 100 Kingsbrook 3.12(116372013.1).pdf" sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="ReadPDFText_1" PreserveFormatting="True" Range="All" Text="[Lease_Input]" />
-    <ui:WriteTextFile File="{x:Null}" DisplayName="Write Text File" FileName="lease_canalquarter.txt" sap:VirtualizedContainerService.HintSize="484,133" sap2010:WorkflowViewState.IdRef="WriteTextFile_1" Text="[Lease_Input]" />
-    <Assign sap:VirtualizedContainerService.HintSize="484,81" sap2010:WorkflowViewState.IdRef="Assign_27">
+    <ui:ReadPDFText DisplayName="Read PDF Text" FileName="Lease 3.pdf" sap:VirtualizedContainerService.HintSize="586,60" sap2010:WorkflowViewState.IdRef="ReadPDFText_1" PreserveFormatting="True" Range="All" Text="[Lease_Input]" />
+    <ui:WriteTextFile File="{x:Null}" DisplayName="Write Text File" FileName="lease_canalquarter.txt" sap:VirtualizedContainerService.HintSize="586,133" sap2010:WorkflowViewState.IdRef="WriteTextFile_1" Text="[Lease_Input]" />
+    <Assign sap:VirtualizedContainerService.HintSize="586,81" sap2010:WorkflowViewState.IdRef="Assign_27">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[plot_number]</OutArgument>
       </Assign.To>
@@ -209,13 +211,13 @@
         <InArgument x:TypeArguments="x:String">[Lease_Input.Substring(Lease_Input.IndexOf("Plot Number"),100).Split({Environment.NewLine},stringsplitoptions.none)(0).Trim.split(" ".ToCharArray).Last]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="484,52" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_3" InstanceCachePeriod="3000" WorkbookPath="Data\Plot100_Contract_Lease_Master.xlsx">
+    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="586,833" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_3" InstanceCachePeriod="3000" WorkbookPath="Data\Plot100_Contract_Lease_Master.xlsx">
       <ui:ExcelApplicationScope.Body>
         <ActivityAction x:TypeArguments="ui:WorkbookApplication">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="548,913" sap2010:WorkflowViewState.IdRef="Sequence_11">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="450,723" sap2010:WorkflowViewState.IdRef="Sequence_11">
             <Sequence.Variables>
               <Variable x:TypeArguments="sd:DataTable" Name="current_datatable" />
             </Sequence.Variables>
@@ -224,14 +226,14 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:ExcelReadRange AddHeaders="True" DataTable="[current_datatable]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="486,60" sap2010:WorkflowViewState.IdRef="ExcelReadRange_2" SheetName="Sheet1">
+            <ui:ExcelReadRange AddHeaders="True" DataTable="[current_datatable]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="388,60" sap2010:WorkflowViewState.IdRef="ExcelReadRange_2" SheetName="Sheet1">
               <ui:ExcelReadRange.Range>
                 <InArgument x:TypeArguments="x:String">
                   <Literal x:TypeArguments="x:String" Value="" />
                 </InArgument>
               </ui:ExcelReadRange.Range>
             </ui:ExcelReadRange>
-            <ui:LookupDataTable CellValue="{x:Null}" LookupColumnIndex="{x:Null}" LookupDataColumn="{x:Null}" TargetColumnIndex="{x:Null}" TargetColumnName="{x:Null}" TargetDataColumn="{x:Null}" DataTable="[current_datatable]" DisplayName="Lookup Data Table" sap:VirtualizedContainerService.HintSize="486,292" sap2010:WorkflowViewState.IdRef="LookupDataTable_2" LookupColumnName="Plot_Number" LookupValue="[plot_number]" RowIndex="[row_index]">
+            <ui:LookupDataTable CellValue="{x:Null}" LookupColumnIndex="{x:Null}" LookupDataColumn="{x:Null}" TargetColumnIndex="{x:Null}" TargetColumnName="{x:Null}" TargetDataColumn="{x:Null}" DataTable="[current_datatable]" DisplayName="Lookup Data Table" sap:VirtualizedContainerService.HintSize="388,292" sap2010:WorkflowViewState.IdRef="LookupDataTable_2" LookupColumnName="Plot_Number" LookupValue="[plot_number]" RowIndex="[row_index]">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -239,7 +241,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </ui:LookupDataTable>
-            <If Condition="[row_index=-1]" sap:VirtualizedContainerService.HintSize="486,52" sap2010:WorkflowViewState.IdRef="If_2">
+            <If Condition="[row_index=-1]" sap:VirtualizedContainerService.HintSize="388,52" sap2010:WorkflowViewState.IdRef="If_2">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -247,24 +249,24 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
               <If.Then>
-                <Sequence sap:VirtualizedContainerService.HintSize="300,232" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                <Sequence sap:VirtualizedContainerService.HintSize="376,500" sap2010:WorkflowViewState.IdRef="Sequence_12">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{plot_number}]" DataTable="[current_datatable]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="258,52" sap2010:WorkflowViewState.IdRef="AddDataRow_1">
+                  <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;&quot;,plot_number}]" DataTable="[current_datatable]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="334,186" sap2010:WorkflowViewState.IdRef="AddDataRow_1">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                   </ui:AddDataRow>
-                  <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{plot_number}]" DataTable="[current_datatable]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="258,52" sap2010:WorkflowViewState.IdRef="AddDataRow_2">
+                  <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;&quot;,plot_number}]" DataTable="[current_datatable]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="334,186" sap2010:WorkflowViewState.IdRef="AddDataRow_2">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
@@ -281,29 +283,18 @@
                 </Sequence>
               </If.Else>
             </If>
-            <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="486,278" sap2010:WorkflowViewState.IdRef="CommentOut_4">
-              <ui:CommentOut.Body>
-                <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="450,199" sap2010:WorkflowViewState.IdRef="Sequence_15">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                  <ui:ExcelWriteRange AddHeaders="True" DataTable="[current_datatable]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="388,88" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_2" SheetName="Sheet1" StartingCell="A1" />
-                </Sequence>
-              </ui:CommentOut.Body>
-            </ui:CommentOut>
+            <ui:ExcelWriteRange AddHeaders="True" DataTable="[current_datatable]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="388,88" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_3" SheetName="Sheet1" StartingCell="A1" />
           </Sequence>
         </ActivityAction>
       </ui:ExcelApplicationScope.Body>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:ExcelApplicationScope>
-    <Assign sap:VirtualizedContainerService.HintSize="484,82" sap2010:WorkflowViewState.IdRef="Assign_35">
+    <Assign sap:VirtualizedContainerService.HintSize="586,81" sap2010:WorkflowViewState.IdRef="Assign_35">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[parking_space]</OutArgument>
       </Assign.To>
@@ -311,7 +302,7 @@
         <InArgument x:TypeArguments="x:String">[System.Text.RegularExpressions.Regex.Split( lease_input, "\s{10,555}CHAPTER 3:")(1)]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign sap:VirtualizedContainerService.HintSize="484,82" sap2010:WorkflowViewState.IdRef="Assign_36">
+    <Assign sap:VirtualizedContainerService.HintSize="586,81" sap2010:WorkflowViewState.IdRef="Assign_36">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[parking_space]</OutArgument>
       </Assign.To>
@@ -319,7 +310,7 @@
         <InArgument x:TypeArguments="x:String">[parking_space.Substring(parking_space.IndexOf(System.Text.RegularExpressions.Regex.Match( parking_space, "1. ").Value)+3,500).Trim.split(",".ToCharArray)(0).replace("If a","").trim]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign sap:VirtualizedContainerService.HintSize="484,81" sap2010:WorkflowViewState.IdRef="Assign_33">
+    <Assign sap:VirtualizedContainerService.HintSize="586,81" sap2010:WorkflowViewState.IdRef="Assign_33">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[type_of_property]</OutArgument>
       </Assign.To>
@@ -327,7 +318,7 @@
         <InArgument x:TypeArguments="x:String">[System.Text.RegularExpressions.Regex.Split( lease_input, "\s{10,555}CHAPTER 2: YOUR PROPERTY")(1)]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign sap:VirtualizedContainerService.HintSize="484,81" sap2010:WorkflowViewState.IdRef="Assign_34">
+    <Assign sap:VirtualizedContainerService.HintSize="586,81" sap2010:WorkflowViewState.IdRef="Assign_34">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[type_of_property]</OutArgument>
       </Assign.To>
@@ -335,7 +326,7 @@
         <InArgument x:TypeArguments="x:String">[type_of_property.Substring(type_of_property.indexof("YOUR PROPERTY is the")+("YOUR PROPERTY is the").Length,type_of_property.indexof("numbered")-type_of_property.indexof("YOUR PROPERTY is the")-("YOUR PROPERTY is the").Length).Trim]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign sap:VirtualizedContainerService.HintSize="484,81" sap2010:WorkflowViewState.IdRef="Assign_3">
+    <Assign sap:VirtualizedContainerService.HintSize="586,81" sap2010:WorkflowViewState.IdRef="Assign_3">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[Title_Number]</OutArgument>
       </Assign.To>
@@ -343,7 +334,7 @@
         <InArgument x:TypeArguments="x:String">[Lease_Input.Substring(Lease_Input.IndexOf("LR2.1 LANDLORD’S TITLE NUMBER(S)")+("LR2.1 LANDLORD’S TITLE NUMBER(S)").Length,Lease_Input.IndexOf("LR2.2")-Lease_Input.IndexOf("LR2.1 LANDLORD’S TITLE NUMBER(S)")).Replace("LR2.2 OTHER TITLE NUMBERS","").Trim]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign sap:VirtualizedContainerService.HintSize="484,82" sap2010:WorkflowViewState.IdRef="Assign_4">
+    <Assign sap:VirtualizedContainerService.HintSize="586,81" sap2010:WorkflowViewState.IdRef="Assign_4">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[adress_1]</OutArgument>
       </Assign.To>
@@ -351,7 +342,23 @@
         <InArgument x:TypeArguments="x:String">[Lease_Input.Substring(Lease_Input.IndexOf("LR3. PARTIES TO THIS LEASE")+("LR3. PARTIES TO THIS LEASE").Length,Lease_Input.IndexOf("TENANT")-Lease_Input.IndexOf("LR3. PARTIES TO THIS LEASE")).Replace("TENANT","").Trim.Replace("LANDLORD","").Trim]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign sap:VirtualizedContainerService.HintSize="484,82" sap2010:WorkflowViewState.IdRef="Assign_5">
+    <Assign sap:VirtualizedContainerService.HintSize="586,82" sap2010:WorkflowViewState.IdRef="Assign_39">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[adress_1]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[String.Join(" " ,Split(adress_1,Environment.NewLine))]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="586,82" sap2010:WorkflowViewState.IdRef="Assign_40">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[adress_1]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[System.Text.RegularExpressions.Regex.Replace(adress_1.Trim, "\s+", " ")]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="586,82" sap2010:WorkflowViewState.IdRef="Assign_5">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[tenant_1]</OutArgument>
       </Assign.To>
@@ -359,7 +366,7 @@
         <InArgument x:TypeArguments="x:String">[Lease_Input.Substring(Lease_Input.IndexOf("LR3. PARTIES TO THIS LEASE")+("LR3. PARTIES TO THIS LEASE").Length,Lease_Input.IndexOf("OTHER PARTIES")-Lease_Input.IndexOf("LR3. PARTIES TO THIS LEASE")).Replace("TENANT","").Trim.Replace("LANDLORD","").Trim.Replace(adress_1,"").Trim.Replace("OTHER PARTIES","").Trim]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign sap:VirtualizedContainerService.HintSize="484,82" sap2010:WorkflowViewState.IdRef="Assign_6">
+    <Assign sap:VirtualizedContainerService.HintSize="586,82" sap2010:WorkflowViewState.IdRef="Assign_6">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[address_2]</OutArgument>
       </Assign.To>
@@ -367,7 +374,7 @@
         <InArgument x:TypeArguments="x:String">[Lease_Input.Substring(Lease_Input.IndexOf("LR3. PARTIES TO THIS LEASE")+("LR3. PARTIES TO THIS LEASE").Length,Lease_Input.IndexOf("LR4. PROPERTY")-Lease_Input.IndexOf("LR3. PARTIES TO THIS LEASE"))]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign sap:VirtualizedContainerService.HintSize="484,82" sap2010:WorkflowViewState.IdRef="Assign_7">
+    <Assign sap:VirtualizedContainerService.HintSize="586,82" sap2010:WorkflowViewState.IdRef="Assign_7">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[address_2]</OutArgument>
       </Assign.To>
@@ -375,7 +382,23 @@
         <InArgument x:TypeArguments="x:String">[address_2.Substring(address_2.IndexOf("CANAL QUARTER MANAGEMENT COMPANY LIMITED"),address_2.IndexOf("LR4. PROPERTY")-address_2.IndexOf("CANAL QUARTER MANAGEMENT COMPANY LIMITED")).Trim]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign sap:VirtualizedContainerService.HintSize="484,81" sap2010:WorkflowViewState.IdRef="Assign_8">
+    <Assign sap:VirtualizedContainerService.HintSize="586,82" sap2010:WorkflowViewState.IdRef="Assign_41">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[address_2]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[String.Join(" " ,Split(address_2,Environment.NewLine))]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="586,82" sap2010:WorkflowViewState.IdRef="Assign_42">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[address_2]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[System.Text.RegularExpressions.Regex.Replace(address_2.Trim, "\s+", " ")]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="586,82" sap2010:WorkflowViewState.IdRef="Assign_8">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[address_3]</OutArgument>
       </Assign.To>
@@ -383,7 +406,23 @@
         <InArgument x:TypeArguments="x:String">[Lease_Input.Substring(Lease_Input.IndexOf("LR4. PROPERTY")+("LR4. PROPERTY").Length,Lease_Input.IndexOf("LR5. PRESCRIBED STATEMENTS ETC.")-Lease_Input.IndexOf("LR4. PROPERTY")).Trim]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign sap:VirtualizedContainerService.HintSize="484,81" sap2010:WorkflowViewState.IdRef="Assign_28">
+    <Assign sap:VirtualizedContainerService.HintSize="586,82" sap2010:WorkflowViewState.IdRef="Assign_37">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[address_3]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[String.Join(" " ,Split(address_3,Environment.NewLine))]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="586,82" sap2010:WorkflowViewState.IdRef="Assign_38">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[address_3]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[System.Text.RegularExpressions.Regex.Replace(address_3.Trim, "\s+", " ")]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="586,82" sap2010:WorkflowViewState.IdRef="Assign_28">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[postal_address]</OutArgument>
       </Assign.To>
@@ -391,7 +430,7 @@
         <InArgument x:TypeArguments="x:String">[address_3.Substring(address_3.IndexOf("Plot"),address_3.Length-address_3.IndexOf("Plot")).Substring(0,address_3.Substring(address_3.IndexOf("Plot"),address_3.Length-address_3.IndexOf("Plot")).IndexOf("and")).Trim]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign sap:VirtualizedContainerService.HintSize="484,81" sap2010:WorkflowViewState.IdRef="Assign_29">
+    <Assign sap:VirtualizedContainerService.HintSize="586,82" sap2010:WorkflowViewState.IdRef="Assign_29">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[postal_address]</OutArgument>
       </Assign.To>
@@ -399,7 +438,7 @@
         <InArgument x:TypeArguments="x:String">[postal_address.Substring(0,postal_address.IndexOf("which"))]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign sap:VirtualizedContainerService.HintSize="484,82" sap2010:WorkflowViewState.IdRef="Assign_9">
+    <Assign sap:VirtualizedContainerService.HintSize="586,82" sap2010:WorkflowViewState.IdRef="Assign_9">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[address_3]</OutArgument>
       </Assign.To>
@@ -407,7 +446,7 @@
         <InArgument x:TypeArguments="x:String">[address_3.Substring(address_3.IndexOf("Plot"),address_3.Length-address_3.IndexOf("Plot")).Substring(0,address_3.Substring(address_3.IndexOf("Plot"),address_3.Length-address_3.IndexOf("Plot")).IndexOf("and")).Replace("which has a postal address of","").Trim]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign sap:VirtualizedContainerService.HintSize="484,82" sap2010:WorkflowViewState.IdRef="Assign_30">
+    <Assign sap:VirtualizedContainerService.HintSize="586,82" sap2010:WorkflowViewState.IdRef="Assign_30">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[postal_address]</OutArgument>
       </Assign.To>
@@ -415,7 +454,7 @@
         <InArgument x:TypeArguments="x:String">[address_3.Replace(postal_address,"").trim]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign sap:VirtualizedContainerService.HintSize="484,82" sap2010:WorkflowViewState.IdRef="Assign_31">
+    <Assign sap:VirtualizedContainerService.HintSize="586,82" sap2010:WorkflowViewState.IdRef="Assign_31">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[postal_address]</OutArgument>
       </Assign.To>
@@ -423,7 +462,7 @@
         <InArgument x:TypeArguments="x:String">[String.Join(" " ,Split(postal_address,Environment.NewLine))]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign sap:VirtualizedContainerService.HintSize="484,82" sap2010:WorkflowViewState.IdRef="Assign_32">
+    <Assign sap:VirtualizedContainerService.HintSize="586,82" sap2010:WorkflowViewState.IdRef="Assign_32">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[postal_address]</OutArgument>
       </Assign.To>
@@ -431,7 +470,7 @@
         <InArgument x:TypeArguments="x:String">[System.Text.RegularExpressions.Regex.Replace(postal_address.Trim, "\s+", " ")]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign sap:VirtualizedContainerService.HintSize="484,82" sap2010:WorkflowViewState.IdRef="Assign_10">
+    <Assign sap:VirtualizedContainerService.HintSize="586,82" sap2010:WorkflowViewState.IdRef="Assign_10">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[address_4]</OutArgument>
       </Assign.To>
@@ -439,7 +478,7 @@
         <InArgument x:TypeArguments="x:String">[Lease_Input.Substring(Lease_Input.IndexOf("LR6. TERM FOR WHICH THE ")+("LR6. TERM FOR WHICH THE ").Length,Lease_Input.IndexOf("LR7. PREMIUM")-Lease_Input.IndexOf("LR6. TERM FOR WHICH THE")).Trim.Replace("PROPERTY IS LEASED","").Trim.Replace("LR7. PREMIUM","").Trim]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign sap:VirtualizedContainerService.HintSize="484,82" sap2010:WorkflowViewState.IdRef="Assign_11">
+    <Assign sap:VirtualizedContainerService.HintSize="586,82" sap2010:WorkflowViewState.IdRef="Assign_11">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[lr_7]</OutArgument>
       </Assign.To>
@@ -447,7 +486,7 @@
         <InArgument x:TypeArguments="x:String">[Lease_Input.Substring(Lease_Input.IndexOf("LR7. PREMIUM")+("LR7. PREMIUM").Length,Lease_Input.IndexOf("LR8. PROHIBITIONS OR RESTRICTIONS")-Lease_Input.IndexOf("LR7. PREMIUM")-("LR7. PREMIUM").Length).Trim.Replace("LR8. PROHIBITIONS OR RESTRICTIONS","").Trim.Replace("LR7. PREMIUM","").Trim]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign sap:VirtualizedContainerService.HintSize="484,82" sap2010:WorkflowViewState.IdRef="Assign_12">
+    <Assign sap:VirtualizedContainerService.HintSize="586,82" sap2010:WorkflowViewState.IdRef="Assign_12">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[edge]</OutArgument>
       </Assign.To>
@@ -455,7 +494,7 @@
         <InArgument x:TypeArguments="x:String">[System.Text.RegularExpressions.Regex.Split( lease_input, "\s{10,555}CHAPTER 2: YOUR PROPERTY")(1)]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign sap:VirtualizedContainerService.HintSize="484,82" sap2010:WorkflowViewState.IdRef="Assign_13">
+    <Assign sap:VirtualizedContainerService.HintSize="586,82" sap2010:WorkflowViewState.IdRef="Assign_13">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[plot]</OutArgument>
       </Assign.To>
@@ -463,7 +502,7 @@
         <InArgument x:TypeArguments="x:String">[edge.Substring(edge.indexof("shown")+5,edge.indexof("and numbered")-edge.indexof("shown")-5).Trim]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:InterruptibleDoWhile CurrentIndex="{x:Null}" Condition="[index&lt;13]" DisplayName="Do While" sap:VirtualizedContainerService.HintSize="484,52" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_1">
+    <ui:InterruptibleDoWhile CurrentIndex="{x:Null}" Condition="[index&lt;13]" DisplayName="Do While" sap:VirtualizedContainerService.HintSize="586,52" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_1">
       <ui:InterruptibleDoWhile.Body>
         <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="496,681" sap2010:WorkflowViewState.IdRef="Sequence_5">
           <Sequence.Variables>
@@ -524,7 +563,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:InterruptibleDoWhile>
-    <Assign sap:VirtualizedContainerService.HintSize="484,82" sap2010:WorkflowViewState.IdRef="Assign_20">
+    <Assign sap:VirtualizedContainerService.HintSize="586,82" sap2010:WorkflowViewState.IdRef="Assign_20">
       <Assign.To>
         <OutArgument x:TypeArguments="s:String[]">[Chapters]</OutArgument>
       </Assign.To>
@@ -532,7 +571,7 @@
         <InArgument x:TypeArguments="s:String[]">[Chapters.Where(Function(x) Not String.IsNullOrWhiteSpace(x)).ToArray]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign sap:VirtualizedContainerService.HintSize="484,82" sap2010:WorkflowViewState.IdRef="Assign_21">
+    <Assign sap:VirtualizedContainerService.HintSize="586,82" sap2010:WorkflowViewState.IdRef="Assign_21">
       <Assign.To>
         <OutArgument x:TypeArguments="s:String[]">[groud_array]</OutArgument>
       </Assign.To>
@@ -540,21 +579,21 @@
         <InArgument x:TypeArguments="s:String[]">[lease_input.Substring(lease_input.IndexOf(System.Text.RegularExpressions.Regex.Match( lease_input, "\s{10,555}CHAPTER 5:").Value),1000).Split({Environment.NewLine},stringsplitoptions.none)]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="484,52" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[groud_array]">
+    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="586,691" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[groud_array]">
       <ui:ForEach.Body>
         <ActivityAction x:TypeArguments="x:String">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:String" Name="currentItem" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="376,270" sap2010:WorkflowViewState.IdRef="Sequence_6">
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="552,505" sap2010:WorkflowViewState.IdRef="Sequence_6">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <If Condition="[currentItem.Contains(&quot;per year&quot;)]" sap:VirtualizedContainerService.HintSize="334,182" sap2010:WorkflowViewState.IdRef="If_1">
+            <If Condition="[currentItem.Contains(&quot;per year&quot;)]" sap:VirtualizedContainerService.HintSize="510,417" sap2010:WorkflowViewState.IdRef="If_1">
               <If.Then>
-                <Sequence sap:VirtualizedContainerService.HintSize="476,170" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                <Sequence sap:VirtualizedContainerService.HintSize="476,235" sap2010:WorkflowViewState.IdRef="Sequence_7">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -568,6 +607,7 @@
                       <InArgument x:TypeArguments="x:String">[currentItem.Substring(1,currentItem.IndexOf("per year")-1).Trim]</InArgument>
                     </Assign.Value>
                   </Assign>
+                  <ui:Break sap:VirtualizedContainerService.HintSize="434,25" sap2010:WorkflowViewState.IdRef="Break_1" />
                 </Sequence>
               </If.Then>
               <If.Else>
@@ -579,12 +619,12 @@
       </ui:ForEach.Body>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:ForEach>
-    <Assign sap:VirtualizedContainerService.HintSize="484,82" sap2010:WorkflowViewState.IdRef="Assign_24">
+    <Assign sap:VirtualizedContainerService.HintSize="586,82" sap2010:WorkflowViewState.IdRef="Assign_24">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[dmc]</OutArgument>
       </Assign.To>
@@ -592,7 +632,7 @@
         <InArgument x:TypeArguments="x:String">[lease_input.Substring(lease_input.IndexOf(System.Text.RegularExpressions.Regex.Match( lease_input, "\s{10,555}CHAPTER 5:").Value),lease_input.Length-lease_input.IndexOf(System.Text.RegularExpressions.Regex.Match( lease_input, "\s{10,555}CHAPTER 5:").Value))]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign sap:VirtualizedContainerService.HintSize="484,82" sap2010:WorkflowViewState.IdRef="Assign_25">
+    <Assign sap:VirtualizedContainerService.HintSize="586,82" sap2010:WorkflowViewState.IdRef="Assign_25">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[dmc]</OutArgument>
       </Assign.To>
@@ -600,7 +640,7 @@
         <InArgument x:TypeArguments="x:String">[dmc.Substring(dmc.IndexOf(" DEVELOPMENT MANAGEMENT COMPANY:")+(" DEVELOPMENT MANAGEMENT COMPANY:").Length,500)]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign sap:VirtualizedContainerService.HintSize="484,82" sap2010:WorkflowViewState.IdRef="Assign_26">
+    <Assign sap:VirtualizedContainerService.HintSize="586,82" sap2010:WorkflowViewState.IdRef="Assign_26">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[dmc]</OutArgument>
       </Assign.To>
@@ -608,66 +648,1018 @@
         <InArgument x:TypeArguments="x:String">[dmc.Substring(0,dmc.IndexOf("or")).Trim]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Contract_Type_1.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="484,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Contract_Type_1.xaml">
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Contract_Type_1.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="586,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Contract_Type_1.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="purchaser">
-          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="purchaser" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="developer">
-          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="developer" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="rate_percent">
-          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="rate" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="completion_date">
-          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="completion_date" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="document_fee">
-          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="document_fee" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="reservation_fee">
-          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="reservation_fee" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="tenure">
-          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="tenure" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="full_purchase_price">
-          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="full_purchase_price" />
-        </InArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="purchaser">
+          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="purchaser" />
+        </OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="developer">
+          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="developer" />
+        </OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="rate_percent">
+          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="rate" />
+        </OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="completion_date">
+          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="completion_date" />
+        </OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="document_fee">
+          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="document_fee" />
+        </OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="reservation_fee">
+          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="reservation_fee" />
+        </OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="tenure">
+          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="tenure" />
+        </OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="full_purchase_price">
+          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="full_purchase_price" />
+        </OutArgument>
         <OutArgument x:TypeArguments="x:String" x:Key="incentive">
           <VisualBasicReference x:TypeArguments="x:String" ExpressionText="incentive" />
         </OutArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
-    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="484,5613" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" InstanceCachePeriod="3000" WorkbookPath="Data\Lease_Master.xlsx">
+    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="586,9137" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" InstanceCachePeriod="3000" WorkbookPath="Data\Plot100_Contract_Lease_Master.xlsx">
       <ui:ExcelApplicationScope.Body>
         <ActivityAction x:TypeArguments="ui:WorkbookApplication">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="450,5503" sap2010:WorkflowViewState.IdRef="Sequence_10">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="472,9027" sap2010:WorkflowViewState.IdRef="Sequence_10">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:ExcelReadRange AddHeaders="True" DataTable="[current_datatable]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="388,60" sap2010:WorkflowViewState.IdRef="ExcelReadRange_1" SheetName="Sheet1">
+            <ui:ExcelReadRange AddHeaders="True" DataTable="[current_datatable]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="410,60" sap2010:WorkflowViewState.IdRef="ExcelReadRange_1" SheetName="Sheet1">
               <ui:ExcelReadRange.Range>
                 <InArgument x:TypeArguments="x:String">
                   <Literal x:TypeArguments="x:String" Value="" />
                 </InArgument>
               </ui:ExcelReadRange.Range>
             </ui:ExcelReadRange>
-            <ui:LookupDataTable CellValue="{x:Null}" LookupColumnIndex="{x:Null}" LookupDataColumn="{x:Null}" TargetColumnIndex="{x:Null}" TargetColumnName="{x:Null}" TargetDataColumn="{x:Null}" DataTable="[current_datatable]" DisplayName="Lookup Data Table" sap:VirtualizedContainerService.HintSize="388,292" sap2010:WorkflowViewState.IdRef="LookupDataTable_1" LookupColumnName="Plot_Number" LookupValue="101" RowIndex="[row_index]">
+            <ui:LookupDataTable CellValue="{x:Null}" LookupColumnIndex="{x:Null}" LookupDataColumn="{x:Null}" TargetColumnIndex="{x:Null}" TargetColumnName="{x:Null}" TargetDataColumn="{x:Null}" DataTable="[current_datatable]" DisplayName="Lookup Data Table" sap:VirtualizedContainerService.HintSize="410,52" sap2010:WorkflowViewState.IdRef="LookupDataTable_1" LookupColumnName="Plot_Number" LookupValue="[plot_number]" RowIndex="[row_index]">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </ui:LookupDataTable>
-            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Property" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="388,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_1" Row="[current_datatable(row_index)]" Value="[address_3]">
+            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Property" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="410,52" sap2010:WorkflowViewState.IdRef="UpdateRowItem_1" Row="[current_datatable(row_index)]" Value="[address_3]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:UpdateRowItem>
+            <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="410,90" sap2010:WorkflowViewState.IdRef="WriteLine_4" Text="[address_3.trim.Replace(&quot; &quot;,&quot;&quot;)]" />
+            <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="410,90" sap2010:WorkflowViewState.IdRef="WriteLine_3" Text="[current_datatable.rows(0).Item(&quot;Property&quot;).ToString.Trim.Replace(&quot; &quot;,&quot;&quot;)]" />
+            <If Condition="[address_3.trim.Replace(&quot; &quot;,&quot;&quot;).Equals(current_datatable.rows(0).Item(&quot;Property&quot;).ToString.Trim.Replace(&quot; &quot;,&quot;&quot;))]" sap:VirtualizedContainerService.HintSize="410,52" sap2010:WorkflowViewState.IdRef="If_3">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Property" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="334,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_32" Row="[current_datatable(row_index+1)]" Value="[&quot;TRUE&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:UpdateRowItem>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Property" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="334,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_33" Row="[current_datatable(row_index+1)]" Value="[&quot;FALSE&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:UpdateRowItem>
+                </Sequence>
+              </If.Else>
+            </If>
+            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Postal Address" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="410,52" sap2010:WorkflowViewState.IdRef="UpdateRowItem_2" Row="[current_datatable(row_index)]" Value="[postal_address]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:UpdateRowItem>
+            <If Condition="[postal_address.trim.Replace(&quot; &quot;,&quot;&quot;).Equals(current_datatable.rows(0).Item(&quot;Postal Address&quot;).ToString.Trim.Replace(&quot; &quot;,&quot;&quot;)) = true]" sap:VirtualizedContainerService.HintSize="410,52" sap2010:WorkflowViewState.IdRef="If_4">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Postal Address" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="334,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_34" Row="[current_datatable(row_index+1)]" Value="[&quot;TRUE&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:UpdateRowItem>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_19">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Postal Address" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="334,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_35" Row="[current_datatable(row_index+1)]" Value="[&quot;FALSE&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:UpdateRowItem>
+                </Sequence>
+              </If.Else>
+            </If>
+            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Developer" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="410,52" sap2010:WorkflowViewState.IdRef="UpdateRowItem_3" Row="[current_datatable(row_index)]" Value="[developer]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:UpdateRowItem>
+            <If Condition="[developer.trim.Replace(&quot; &quot;,&quot;&quot;).Equals(current_datatable.rows(0).Item(&quot;Developer&quot;).ToString.Trim.Replace(&quot; &quot;,&quot;&quot;)) = true]" sap:VirtualizedContainerService.HintSize="410,52" sap2010:WorkflowViewState.IdRef="If_5">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_20">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Developer" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="334,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_36" Row="[current_datatable(row_index+1)]" Value="[&quot;TRUE&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:UpdateRowItem>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_21">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Developer" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="334,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_37" Row="[current_datatable(row_index+1)]" Value="[&quot;FALSE&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:UpdateRowItem>
+                </Sequence>
+              </If.Else>
+            </If>
+            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Purchaser" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="410,52" sap2010:WorkflowViewState.IdRef="UpdateRowItem_4" Row="[current_datatable(row_index)]" Value="[purchaser]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:UpdateRowItem>
+            <If Condition="[purchaser.trim.Replace(&quot; &quot;,&quot;&quot;).Equals(current_datatable.rows(0).Item(&quot;Purchaser&quot;).ToString.Trim.Replace(&quot; &quot;,&quot;&quot;)) = true]" sap:VirtualizedContainerService.HintSize="410,52" sap2010:WorkflowViewState.IdRef="If_6">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_22">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Purchaser" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="334,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_38" Row="[current_datatable(row_index+1)]" Value="[&quot;TRUE&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:UpdateRowItem>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_23">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Purchaser" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="334,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_39" Row="[current_datatable(row_index+1)]" Value="[&quot;FALSE&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:UpdateRowItem>
+                </Sequence>
+              </If.Else>
+            </If>
+            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Price" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="410,52" sap2010:WorkflowViewState.IdRef="UpdateRowItem_18" Row="[current_datatable(row_index)]" Value="[full_purchase_price]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:UpdateRowItem>
+            <If Condition="[full_purchase_price.trim.Replace(&quot; &quot;,&quot;&quot;).Equals(current_datatable.rows(0).Item(&quot;Price&quot;).ToString.Trim.Replace(&quot; &quot;,&quot;&quot;)) = true]" sap:VirtualizedContainerService.HintSize="410,52" sap2010:WorkflowViewState.IdRef="If_7">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_24">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Price" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="334,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_40" Row="[current_datatable(row_index+1)]" Value="[&quot;TRUE&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:UpdateRowItem>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_25">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Price" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="334,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_41" Row="[current_datatable(row_index+1)]" Value="[&quot;FALSE&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:UpdateRowItem>
+                </Sequence>
+              </If.Else>
+            </If>
+            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Reservation Fee paid" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="410,52" sap2010:WorkflowViewState.IdRef="UpdateRowItem_19" Row="[current_datatable(row_index)]" Value="[reservation_fee]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:UpdateRowItem>
+            <If Condition="[reservation_fee.trim.Replace(&quot; &quot;,&quot;&quot;).Equals(current_datatable.rows(0).Item(&quot;Reservation Fee paid&quot;).ToString.Trim.Replace(&quot; &quot;,&quot;&quot;)) = true]" sap:VirtualizedContainerService.HintSize="410,52" sap2010:WorkflowViewState.IdRef="If_8">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_26">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Reservation Fee paid" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="334,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_42" Row="[current_datatable(row_index+1)]" Value="[&quot;TRUE&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:UpdateRowItem>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_27">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Reservation Fee paid" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="334,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_43" Row="[current_datatable(row_index+1)]" Value="[&quot;FALSE&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:UpdateRowItem>
+                </Sequence>
+              </If.Else>
+            </If>
+            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Document Fee payable to Developer" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="410,52" sap2010:WorkflowViewState.IdRef="UpdateRowItem_20" Row="[current_datatable(row_index)]" Value="[document_fee]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:UpdateRowItem>
+            <If Condition="[document_fee.trim.Replace(&quot; &quot;,&quot;&quot;).Equals(current_datatable.rows(0).Item(&quot;Document Fee payable to Developer&quot;).ToString.Trim.Replace(&quot; &quot;,&quot;&quot;)) = true]" sap:VirtualizedContainerService.HintSize="410,52" sap2010:WorkflowViewState.IdRef="If_9">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_28">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Document Fee payable to Developer" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="334,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_44" Row="[current_datatable(row_index+1)]" Value="[&quot;TRUE&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:UpdateRowItem>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_29">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Document Fee payable to Developer" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="334,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_45" Row="[current_datatable(row_index+1)]" Value="[&quot;FALSE&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:UpdateRowItem>
+                </Sequence>
+              </If.Else>
+            </If>
+            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Incentives" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="410,52" sap2010:WorkflowViewState.IdRef="UpdateRowItem_21" Row="[current_datatable(row_index)]" Value="[incentive]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:UpdateRowItem>
+            <If Condition="[incentive.trim.Replace(&quot; &quot;,&quot;&quot;).Equals(current_datatable.rows(0).Item(&quot;Incentives&quot;).ToString.Trim.Replace(&quot; &quot;,&quot;&quot;)) = true]" sap:VirtualizedContainerService.HintSize="410,52" sap2010:WorkflowViewState.IdRef="If_10">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_30">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Incentives" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="334,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_46" Row="[current_datatable(row_index+1)]" Value="[&quot;TRUE&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:UpdateRowItem>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_31">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Incentives" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="334,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_47" Row="[current_datatable(row_index+1)]" Value="[&quot;FALSE&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:UpdateRowItem>
+                </Sequence>
+              </If.Else>
+            </If>
+            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Ground Rent" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="410,52" sap2010:WorkflowViewState.IdRef="UpdateRowItem_6" Row="[current_datatable(row_index)]" Value="[groud_rent]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:UpdateRowItem>
+            <If Condition="[groud_rent.trim.Replace(&quot; &quot;,&quot;&quot;).Equals(current_datatable.rows(0).Item(&quot;Ground Rent&quot;).ToString.Trim.Replace(&quot; &quot;,&quot;&quot;)) = true]" sap:VirtualizedContainerService.HintSize="410,52" sap2010:WorkflowViewState.IdRef="If_11">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_32">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Ground Rent" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="334,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_48" Row="[current_datatable(row_index+1)]" Value="[&quot;TRUE&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:UpdateRowItem>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_33">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Ground Rent" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="334,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_49" Row="[current_datatable(row_index+1)]" Value="[&quot;FALSE&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:UpdateRowItem>
+                </Sequence>
+              </If.Else>
+            </If>
+            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Plot" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="410,52" sap2010:WorkflowViewState.IdRef="UpdateRowItem_7" Row="[current_datatable(row_index)]" Value="[plot]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:UpdateRowItem>
+            <If Condition="[plot.trim.Replace(&quot; &quot;,&quot;&quot;).Equals(current_datatable.rows(0).Item(&quot;Plot&quot;).ToString.Trim.Replace(&quot; &quot;,&quot;&quot;)) = true]" sap:VirtualizedContainerService.HintSize="410,52" sap2010:WorkflowViewState.IdRef="If_12">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_34">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Plot" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="334,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_50" Row="[current_datatable(row_index+1)]" Value="[&quot;TRUE&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:UpdateRowItem>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_35">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Plot" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="334,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_51" Row="[current_datatable(row_index+1)]" Value="[&quot;FALSE&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:UpdateRowItem>
+                </Sequence>
+              </If.Else>
+            </If>
+            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Title" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="410,52" sap2010:WorkflowViewState.IdRef="UpdateRowItem_22" Row="[current_datatable(row_index)]" Value="[tenure]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:UpdateRowItem>
+            <If Condition="[tenure.trim.Replace(&quot; &quot;,&quot;&quot;).Equals(current_datatable.rows(0).Item(&quot;Title&quot;).ToString.Trim.Replace(&quot; &quot;,&quot;&quot;)) = true]" sap:VirtualizedContainerService.HintSize="410,52" sap2010:WorkflowViewState.IdRef="If_13">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_36">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Title" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="334,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_52" Row="[current_datatable(row_index+1)]" Value="[&quot;TRUE&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:UpdateRowItem>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_37">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Title" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="334,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_53" Row="[current_datatable(row_index+1)]" Value="[&quot;FALSE&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:UpdateRowItem>
+                </Sequence>
+              </If.Else>
+            </If>
+            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Title Number" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="410,52" sap2010:WorkflowViewState.IdRef="UpdateRowItem_8" Row="[current_datatable(row_index)]" Value="[Title_Number]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:UpdateRowItem>
+            <If Condition="[Title_Number.trim.Replace(&quot; &quot;,&quot;&quot;).Equals(current_datatable.rows(0).Item(&quot;Title Number&quot;).ToString.Trim.Replace(&quot; &quot;,&quot;&quot;)) = true]" sap:VirtualizedContainerService.HintSize="410,52" sap2010:WorkflowViewState.IdRef="If_14">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_38">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Title Number" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="334,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_54" Row="[current_datatable(row_index+1)]" Value="[&quot;TRUE&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:UpdateRowItem>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_39">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Title Number" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="334,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_55" Row="[current_datatable(row_index+1)]" Value="[&quot;FALSE&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:UpdateRowItem>
+                </Sequence>
+              </If.Else>
+            </If>
+            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Landlord" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="410,52" sap2010:WorkflowViewState.IdRef="UpdateRowItem_9" Row="[current_datatable(row_index)]" Value="[adress_1]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:UpdateRowItem>
+            <If Condition="[adress_1.trim.Replace(&quot; &quot;,&quot;&quot;).Equals(current_datatable.rows(0).Item(&quot;Landlord&quot;).ToString.Trim.Replace(&quot; &quot;,&quot;&quot;)) = true]" sap:VirtualizedContainerService.HintSize="410,52" sap2010:WorkflowViewState.IdRef="If_15">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_40">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Landlord" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="334,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_56" Row="[current_datatable(row_index+1)]" Value="[&quot;TRUE&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:UpdateRowItem>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_41">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Landlord" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="334,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_57" Row="[current_datatable(row_index+1)]" Value="[&quot;FALSE&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:UpdateRowItem>
+                </Sequence>
+              </If.Else>
+            </If>
+            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Term of Lease" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="410,52" sap2010:WorkflowViewState.IdRef="UpdateRowItem_10" Row="[current_datatable(row_index)]" Value="[address_4]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:UpdateRowItem>
+            <If Condition="[address_4.trim.Replace(&quot; &quot;,&quot;&quot;).Equals(current_datatable.rows(0).Item(&quot;Term of Lease&quot;).ToString.Trim.Replace(&quot; &quot;,&quot;&quot;)) = true]" sap:VirtualizedContainerService.HintSize="410,52" sap2010:WorkflowViewState.IdRef="If_16">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_42">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Term of Lease" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="334,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_58" Row="[current_datatable(row_index+1)]" Value="[&quot;TRUE&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:UpdateRowItem>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_43">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Term of Lease" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="334,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_59" Row="[current_datatable(row_index+1)]" Value="[&quot;FALSE&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:UpdateRowItem>
+                </Sequence>
+              </If.Else>
+            </If>
+            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Residents Management Company (RMC)" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="410,52" sap2010:WorkflowViewState.IdRef="UpdateRowItem_11" Row="[current_datatable(row_index)]" Value="[address_2]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:UpdateRowItem>
+            <If Condition="[address_2.trim.Replace(&quot; &quot;,&quot;&quot;).Equals(current_datatable.rows(0).Item(&quot;Residents Management Company (RMC)&quot;).ToString.Trim.Replace(&quot; &quot;,&quot;&quot;)) = true]" sap:VirtualizedContainerService.HintSize="410,52" sap2010:WorkflowViewState.IdRef="If_17">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_44">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Residents Management Company (RMC)" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="334,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_60" Row="[current_datatable(row_index+1)]" Value="[&quot;TRUE&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:UpdateRowItem>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_45">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Residents Management Company (RMC)" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="334,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_61" Row="[current_datatable(row_index+1)]" Value="[&quot;FALSE&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:UpdateRowItem>
+                </Sequence>
+              </If.Else>
+            </If>
+            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Development  Management Company (DMC)" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="410,52" sap2010:WorkflowViewState.IdRef="UpdateRowItem_12" Row="[current_datatable(row_index)]" Value="[dmc]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:UpdateRowItem>
+            <If Condition="[dmc.trim.Replace(&quot; &quot;,&quot;&quot;).Equals(current_datatable.rows(0).Item(&quot;Development  Management Company (DMC)&quot;).ToString.Trim.Replace(&quot; &quot;,&quot;&quot;)) = true]" sap:VirtualizedContainerService.HintSize="410,52" sap2010:WorkflowViewState.IdRef="If_18">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_46">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Development  Management Company (DMC)" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="334,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_62" Row="[current_datatable(row_index+1)]" Value="[&quot;TRUE&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:UpdateRowItem>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_47">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Development  Management Company (DMC)" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="334,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_63" Row="[current_datatable(row_index+1)]" Value="[&quot;FALSE&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:UpdateRowItem>
+                </Sequence>
+              </If.Else>
+            </If>
+            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Rights granted for the benefit of this property(Chapter 3)" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="410,52" sap2010:WorkflowViewState.IdRef="UpdateRowItem_13" Row="[current_datatable(row_index)]" Value="[Chapters(0)]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:UpdateRowItem>
+            <If Condition="[Chapters(0).trim.Replace(&quot; &quot;,&quot;&quot;).Equals(current_datatable.rows(0).Item(&quot;Rights granted for the benefit of this property(Chapter 3)&quot;).ToString.Trim.Replace(&quot; &quot;,&quot;&quot;)) = true]" sap:VirtualizedContainerService.HintSize="410,52" sap2010:WorkflowViewState.IdRef="If_19">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_48">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Rights granted for the benefit of this property(Chapter 3)" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="334,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_64" Row="[current_datatable(row_index+1)]" Value="[&quot;TRUE&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:UpdateRowItem>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_49">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Rights granted for the benefit of this property(Chapter 3)" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="334,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_65" Row="[current_datatable(row_index+1)]" Value="[&quot;FALSE&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:UpdateRowItem>
+                </Sequence>
+              </If.Else>
+            </If>
+            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Rights reserved in favour of the Landlord and others(Chapter 4)" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="410,52" sap2010:WorkflowViewState.IdRef="UpdateRowItem_14" Row="[current_datatable(row_index)]" Value="[Chapters(1)]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:UpdateRowItem>
+            <If Condition="[Chapters(1).trim.Replace(&quot; &quot;,&quot;&quot;).Equals(current_datatable.rows(0).Item(&quot;Rights reserved in favour of the Landlord and others(Chapter 4)&quot;).ToString.Trim.Replace(&quot; &quot;,&quot;&quot;)) = true]" sap:VirtualizedContainerService.HintSize="410,52" sap2010:WorkflowViewState.IdRef="If_20">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_50">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Rights reserved in favour of the Landlord and others(Chapter 4)" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="334,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_66" Row="[current_datatable(row_index+1)]" Value="[&quot;TRUE&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:UpdateRowItem>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_51">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Rights reserved in favour of the Landlord and others(Chapter 4)" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="334,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_67" Row="[current_datatable(row_index+1)]" Value="[&quot;FALSE&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:UpdateRowItem>
+                </Sequence>
+              </If.Else>
+            </If>
+            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Covenants and other obligations of the Tenant(Chapter 5)" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="410,52" sap2010:WorkflowViewState.IdRef="UpdateRowItem_15" Row="[current_datatable(row_index)]" Value="[Chapters(2)]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:UpdateRowItem>
+            <If Condition="[Chapters(2).trim.Replace(&quot; &quot;,&quot;&quot;).Equals(current_datatable.rows(0).Item(&quot;Covenants and other obligations of the Tenant(Chapter 5)&quot;).ToString.Trim.Replace(&quot; &quot;,&quot;&quot;)) = true]" sap:VirtualizedContainerService.HintSize="410,52" sap2010:WorkflowViewState.IdRef="If_21">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_52">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Covenants and other obligations of the Tenant(Chapter 5)" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="334,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_68" Row="[current_datatable(row_index+1)]" Value="[&quot;TRUE&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:UpdateRowItem>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_53">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Covenants and other obligations of the Tenant(Chapter 5)" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="334,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_69" Row="[current_datatable(row_index+1)]" Value="[&quot;FALSE&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:UpdateRowItem>
+                </Sequence>
+              </If.Else>
+            </If>
+            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Covenants and other obligations of the Tenant(Chapter 9)" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="410,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_16" Row="[current_datatable(row_index)]" Value="[Chapters(6)]">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -675,27 +1667,438 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </ui:UpdateRowItem>
-            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Postal Address" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="388,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_2" Row="[current_datatable(row_index)]" Value="[postal_address]" />
-            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Developer" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="388,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_3" Row="[current_datatable(row_index)]" Value="[developer]" />
-            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Purchaser" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="388,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_4" Row="[current_datatable(row_index)]" Value="[purchaser]" />
-            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Price" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="388,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_18" Row="[current_datatable(row_index)]" Value="[full_purchase_price]" />
-            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Reservation Fee paid" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="388,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_19" Row="[current_datatable(row_index)]" Value="[reservation_fee]" />
-            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Document Fee payable to Developer" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="388,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_20" Row="[current_datatable(row_index)]" Value="[document_fee]" />
-            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Incentives" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="388,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_21" Row="[current_datatable(row_index)]" Value="[incentive]" />
-            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Ground Rent" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="388,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_6" Row="[current_datatable(row_index)]" Value="[groud_rent]" />
-            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Plot" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="388,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_7" Row="[current_datatable(row_index)]" Value="[edge]" />
-            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Title" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="388,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_22" Row="[current_datatable(row_index)]" Value="[tenure]" />
-            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Title Number" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="388,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_8" Row="[current_datatable(row_index)]" Value="[Title_Number]" />
-            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Landlord" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="388,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_9" Row="[current_datatable(row_index)]" Value="[adress_1]" />
-            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Term of Lease" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="388,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_10" Row="[current_datatable(row_index)]" Value="[address_4]" />
-            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Residents Management Company (RMC)" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="388,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_11" Row="[current_datatable(row_index)]" Value="[address_2]" />
-            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Development  Management Company (DMC)" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="388,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_12" Row="[current_datatable(row_index)]" Value="[dmc]" />
-            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Rights granted for the benefit of this property" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="388,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_13" Row="[current_datatable(row_index)]" Value="[Chapters(0)]" />
-            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Rights reserved in favour of the Landlord and others" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="388,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_14" Row="[current_datatable(row_index)]" Value="[Chapters(0)]" />
-            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Covenants and other obligations of the Tenant(Chapter 5)" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="388,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_15" Row="[current_datatable(row_index)]" Value="[Chapters(2)]" />
-            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Covenants and other obligations of the Tenant(Chapter 9)" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="388,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_16" Row="[current_datatable(row_index)]" Value="[Chapters(6)]" />
-            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Covenants and other obligations of the Tenant(Chapter 10)" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="388,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_17" Row="[current_datatable(row_index)]" Value="[Chapters(7)]" />
-            <ui:ExcelWriteRange AddHeaders="True" DataTable="[current_datatable]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="388,88" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_1" SheetName="Sheet1" StartingCell="A1" />
+            <If Condition="[Chapters(6).trim.Replace(&quot; &quot;,&quot;&quot;).Equals(current_datatable.rows(0).Item(&quot;Covenants and other obligations of the Tenant(Chapter 9)&quot;).ToString.Trim.Replace(&quot; &quot;,&quot;&quot;)) = true]" sap:VirtualizedContainerService.HintSize="410,52" sap2010:WorkflowViewState.IdRef="If_22">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_54">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Covenants and other obligations of the Tenant(Chapter 9)" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="334,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_70" Row="[current_datatable(row_index+1)]" Value="[&quot;TRUE&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:UpdateRowItem>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_55">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Covenants and other obligations of the Tenant(Chapter 9)" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="334,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_71" Row="[current_datatable(row_index+1)]" Value="[&quot;FALSE&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:UpdateRowItem>
+                </Sequence>
+              </If.Else>
+            </If>
+            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Covenants and other obligations of the Tenant(Chapter 10)" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="410,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_17" Row="[current_datatable(row_index)]" Value="[Chapters(7)]" />
+            <If Condition="[Chapters(7).trim.Replace(&quot; &quot;,&quot;&quot;).Equals(current_datatable.rows(0).Item(&quot;Covenants and other obligations of the Tenant(Chapter 10)&quot;).ToString.Trim.Replace(&quot; &quot;,&quot;&quot;)) = true]" sap:VirtualizedContainerService.HintSize="410,52" sap2010:WorkflowViewState.IdRef="If_23">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_56">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Covenants and other obligations of the Tenant(Chapter 10)" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="334,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_72" Row="[current_datatable(row_index+1)]" Value="[&quot;TRUE&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:UpdateRowItem>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_57">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Covenants and other obligations of the Tenant(Chapter 10)" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="334,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_73" Row="[current_datatable(row_index+1)]" Value="[&quot;FALSE&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:UpdateRowItem>
+                </Sequence>
+              </If.Else>
+            </If>
+            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Covenants and other obligations of the Tenant(Chapter 11)" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="410,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_23" Row="[current_datatable(row_index)]" Value="[Chapters(8)]" />
+            <If Condition="[Chapters(8).trim.Replace(&quot; &quot;,&quot;&quot;).Equals(current_datatable.rows(0).Item(&quot;Covenants and other obligations of the Tenant(Chapter 11)&quot;).ToString.Trim.Replace(&quot; &quot;,&quot;&quot;)) = true]" sap:VirtualizedContainerService.HintSize="410,52" sap2010:WorkflowViewState.IdRef="If_24">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_58">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Covenants and other obligations of the Tenant(Chapter 11)" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="334,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_74" Row="[current_datatable(row_index+1)]" Value="[&quot;TRUE&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:UpdateRowItem>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_59">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="[&quot;Covenants and other obligations of the Tenant(Chapter 10)&quot;&quot;Covenants and other obligations of the Tenant(Chapter 11)&quot;]" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="334,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_75" Row="[current_datatable(row_index+1)]" Value="[&quot;FALSE&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:UpdateRowItem>
+                </Sequence>
+              </If.Else>
+            </If>
+            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Covenants and obligations of the Landlord(Chapter 12)" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="410,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_24" Row="[current_datatable(row_index)]" Value="[Chapters(9)]" />
+            <If Condition="[Chapters(9).trim.Replace(&quot; &quot;,&quot;&quot;).Equals(current_datatable.rows(0).Item(&quot;Covenants and obligations of the Landlord(Chapter 12)&quot;).ToString.Trim.Replace(&quot; &quot;,&quot;&quot;)) = true]" sap:VirtualizedContainerService.HintSize="410,742" sap2010:WorkflowViewState.IdRef="If_25">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_60">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Covenants and obligations of the Landlord(Chapter 12)" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="334,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_76" Row="[current_datatable(row_index+1)]" Value="[&quot;TRUE&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:UpdateRowItem>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_61">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Covenants and obligations of the Landlord(Chapter 12)" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="334,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_77" Row="[current_datatable(row_index+1)]" Value="[&quot;FALSE&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:UpdateRowItem>
+                </Sequence>
+              </If.Else>
+            </If>
+            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Covenants by the Management Company(Chapter 6)" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="410,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_25" Row="[current_datatable(row_index)]" Value="[Chapters(3)]" />
+            <If Condition="[Chapters(3).trim.Replace(&quot; &quot;,&quot;&quot;).Equals(current_datatable.rows(0).Item(&quot;Covenants by the Management Company(Chapter 6)&quot;).ToString.Trim.Replace(&quot; &quot;,&quot;&quot;)) = true]" sap:VirtualizedContainerService.HintSize="410,52" sap2010:WorkflowViewState.IdRef="If_26">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_62">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Covenants by the Management Company(Chapter 6)" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="334,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_78" Row="[current_datatable(row_index+1)]" Value="[&quot;TRUE&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:UpdateRowItem>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_63">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Covenants by the Management Company(Chapter 6)" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="334,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_79" Row="[current_datatable(row_index+1)]" Value="[&quot;FALSE&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:UpdateRowItem>
+                </Sequence>
+              </If.Else>
+            </If>
+            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="The completion date will be on" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="410,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_26" Row="[current_datatable(row_index)]" Value="[completion_date]" />
+            <If Condition="[completion_date.trim.Replace(&quot; &quot;,&quot;&quot;).Equals(current_datatable.rows(0).Item(&quot;The completion date will be on&quot;).ToString.Trim.Replace(&quot; &quot;,&quot;&quot;)) = true]" sap:VirtualizedContainerService.HintSize="410,52" sap2010:WorkflowViewState.IdRef="If_27">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_64">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="The completion date will be on" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="334,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_80" Row="[current_datatable(row_index+1)]" Value="[&quot;TRUE&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:UpdateRowItem>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_65">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="The completion date will be on" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="334,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_81" Row="[current_datatable(row_index+1)]" Value="[&quot;FALSE&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:UpdateRowItem>
+                </Sequence>
+              </If.Else>
+            </If>
+            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Landlord_2" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="410,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_28" Row="[current_datatable(row_index)]" Value="[adress_1]" />
+            <If Condition="[adress_1.trim.Replace(&quot; &quot;,&quot;&quot;).Equals(current_datatable.rows(0).Item(&quot;Landlord_2&quot;).ToString.Trim.Replace(&quot; &quot;,&quot;&quot;)) = true]" sap:VirtualizedContainerService.HintSize="410,52" sap2010:WorkflowViewState.IdRef="If_28">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_66">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Landlord_2" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="334,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_82" Row="[current_datatable(row_index+1)]" Value="[&quot;TRUE&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:UpdateRowItem>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_67">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Landlord_2" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="334,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_83" Row="[current_datatable(row_index+1)]" Value="[&quot;FALSE&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:UpdateRowItem>
+                </Sequence>
+              </If.Else>
+            </If>
+            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Type of Property" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="410,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_29" Row="[current_datatable(row_index)]" Value="[type_of_property]" />
+            <If Condition="[type_of_property.trim.Replace(&quot; &quot;,&quot;&quot;).Equals(current_datatable.rows(0).Item(&quot;Type of Property&quot;).ToString.Trim.Replace(&quot; &quot;,&quot;&quot;)) = true]" sap:VirtualizedContainerService.HintSize="410,52" sap2010:WorkflowViewState.IdRef="If_29">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_68">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Type of Property" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="334,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_84" Row="[current_datatable(row_index+1)]" Value="[&quot;TRUE&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:UpdateRowItem>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_69">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Type of Property" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="334,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_85" Row="[current_datatable(row_index+1)]" Value="[&quot;FALSE&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:UpdateRowItem>
+                </Sequence>
+              </If.Else>
+            </If>
+            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Parking Space" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="410,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_30" Row="[current_datatable(row_index)]" Value="[parking_space]" />
+            <If Condition="[parking_space.trim.Replace(&quot; &quot;,&quot;&quot;).Equals(current_datatable.rows(0).Item(&quot;Parking Space&quot;).ToString.Trim.Replace(&quot; &quot;,&quot;&quot;)) = true]" sap:VirtualizedContainerService.HintSize="410,52" sap2010:WorkflowViewState.IdRef="If_31">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_70">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Parking Space" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="334,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_86" Row="[current_datatable(row_index+1)]" Value="[&quot;TRUE&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:UpdateRowItem>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_71">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Parking Space" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="334,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_87" Row="[current_datatable(row_index+1)]" Value="[&quot;FALSE&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:UpdateRowItem>
+                </Sequence>
+              </If.Else>
+            </If>
+            <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Purchase price at a rate of" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="410,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_31" Row="[current_datatable(row_index)]" Value="[rate]" />
+            <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="410,90" sap2010:WorkflowViewState.IdRef="WriteLine_5" Text="[rate.trim.Replace(&quot; &quot;,&quot;&quot;)]" />
+            <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="410,90" sap2010:WorkflowViewState.IdRef="WriteLine_6" Text="[(current_datatable.rows(0).Item(&quot;Purchase price at a rate of&quot;).ToString.Trim.Replace(&quot; &quot;,&quot;&quot;))]" />
+            <If Condition="[rate.trim.Replace(&quot; &quot;,&quot;&quot;).Equals(current_datatable.rows(0).Item(&quot;Purchase price at a rate of&quot;).ToString.Trim.Replace(&quot; &quot;,&quot;&quot;)) = true]" sap:VirtualizedContainerService.HintSize="410,742" sap2010:WorkflowViewState.IdRef="If_32">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_72">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Purchase price at a rate of" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="334,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_88" Row="[current_datatable(row_index+1)]" Value="[&quot;TRUE&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:UpdateRowItem>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_73">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="Purchase price at a rate of" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="334,192" sap2010:WorkflowViewState.IdRef="UpdateRowItem_89" Row="[current_datatable(row_index+1)]" Value="[&quot;FALSE&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:UpdateRowItem>
+                </Sequence>
+              </If.Else>
+            </If>
+            <ui:ExcelWriteRange AddHeaders="True" DataTable="[current_datatable]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="410,88" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_1" SheetName="Sheet1" StartingCell="A1" />
           </Sequence>
         </ActivityAction>
       </ui:ExcelApplicationScope.Body>
@@ -706,6 +2109,6 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:ExcelApplicationScope>
-    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="484,90" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[Lease_Input]" />
+    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="586,90" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[Lease_Input]" />
   </Sequence>
 </Activity>

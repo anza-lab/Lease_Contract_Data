@@ -2,13 +2,13 @@
 
 
  LEASE
-of Plot Number 100
+of Plot Number 90
 Canal Quarter, (Village 3.12), Kingsbrook, Aylesbury
 (1)      BDW Trading Limited
 
 (2)      Canal Quarter Management Company Limited
+(3)      Palkumar Mandala & Lavanya Jyothi Yanamala
 
-(3)      Mihaela Starluciuc & Razvan Starluciuc
 
 
 
@@ -95,9 +95,8 @@ LR3. PARTIES TO THIS LEASE                  LANDLORD
                                             Park, Bardon Hill, Coalville, Leicestershire LE67 1UF
 
                                             TENANT
-                                            MIHAELA STARLUCIUC & RAZVAN STARLUCIUC
-                                            of 157 Kingsbrook Basin, Broughton, Aylesbury, HP22 7EP
-
+                                            Palkumar Mandala & Lavanya Jyothi Yanamala
+                                            of 169 Kingsbrook Basin, Broughton, Aylesbury, HP22 7EP
                                             OTHER PARTIES
 
                                             CANAL QUARTER MANAGEMENT COMPANY LIMITED
@@ -106,7 +105,7 @@ LR3. PARTIES TO THIS LEASE                  LANDLORD
 LR4. PROPERTY                               IN THE CASE OF A CONFLICT BETWEEN THIS CLAUSE AND THE
                                             REMAINDER OF THIS LEASE THEN, FOR THE PURPOSES OF
                                             REGISTRATION, THIS CLAUSE SHALL PREVAIL.
-                                            Plot 100 which has a postal address of 157 Kingsbrook Basin,
+                                            Plot 90 which has a postal address of 169 Kingsbrook Basin,
                                             Broughton, Aylesbury, HP22 7EP and as described in Chapter
                                             2 of this lease.
 
@@ -115,8 +114,9 @@ LR5. PRESCRIBED STATEMENTS ETC.             Not applicable
 LR6. TERM FOR WHICH THE                     999 years from and including 1 July 2022
 PROPERTY IS LEASED
 
-LR7. PREMIUM                                The sum of Two Hundred And Fifty-Eight Thousand, Nine
-                                            Hundred And Ninety-Five Pounds (£258,995.00).
+LR7. PREMIUM                                The sum of Two Hundred and Fifty Three Thousand, Nine
+                                            Hundred and Ninety Five Pounds (£253,995.00)
+
 LR8. PROHIBITIONS OR RESTRICTIONS           This lease contains a provision that prohibits or restricts
 ON DISPOSING OF THE LEASE                   dispositions.
 LR9. RIGHTS OF ACQUISITION ETC.             LR9.1 TENANT’S CONTRACTUAL RIGHTS TO RENEW THIS LEASE,
@@ -163,8 +163,8 @@ FORM OF RESTRICTION                         form restriction against the title o
                                             provisions of paragraph 3 of Chapter 11 (Disposals of Your
                                             Property) of a lease dated [              ] and made between BDW
                                             Trading Limited (1) Canal Quarter Management Company
-                                            Limited (2) and Mihaela Starluciuc & Razvan Starluciuc (3)
-                                            have been complied with.
+                                            Limited (2) and Palkumar Mandala & Lavanya Jyothi Yanamala
+                                            (3) have been complied with.
 
 LR14. DECLARATION OF TRUST                  Not applicable.
 WHERE THERE IS MORE THAN ONE
@@ -192,8 +192,8 @@ between
 Way, Forest Business Park, Bardon Hill, Coalville, Leicestershire LE67 1UF;
 (2) CANAL QUARTER MANAGEMENT COMPANY LIMITED (company registration number 11780279)
 of 2 Hills Road, Cambridge CB2 1JP
-(3) MIHAELA STARLUCIUC & RAZVAN STARLUCIUC of 157 Kingsbrook Basin, Broughton, Aylesbury, HP22
-7EP
+(3) PALKUMAR MANDALA & LAVANYA JYOTHI YANAMALA of 169 Kingsbrook Basin, Broughton,
+Aylesbury, HP22 7EP;
 each "a PARTY" and together referred to as "the PARTIES". The PARTIES agree as follows:
 The Chapter headings, other headings used in THIS LEASE and any paragraph starting with the words
 "By way of explanation" are descriptive only and do not affect the interpretation of THIS LEASE.
@@ -205,13 +205,13 @@ LANDLORD: the person named as PARTY (1) at the top of this page and others who b
 as described in Chapter 14.
 MANAGEMENT COMPANY: the person named as PARTY (2) at the top of this page.
 LEASE TERM: 999 years from and including 1 July 2022.
-PRICE: Two Hundred And Fifty-Eight Thousand, Nine Hundred And Ninety-Five Pounds (£258,995.00).
+PRICE: Two Hundred and Fifty Three Thousand, Nine Hundred and Ninety Five Pounds (£253,995.00)
 THIS LEASE: this document including the page headed "Prescribed Clauses", this page headed "Introduction",
 the pages headed "Chapter", any schedules and the appendices and any document supplemental to THIS
 LEASE.
 YOU: the person named as PARTY (3) at the top of this page, being the tenant to whom THIS LEASE was initially
 granted and others who become the tenant under THIS LEASE as described in Chapter 14.
-YOUR PROPERTY: plot 100 which has a postal address of 157 Kingsbrook Basin, Broughton, Aylesbury, HP22
+YOUR PROPERTY: plot 90 which has a postal address of 169 Kingsbrook Basin, Broughton, Aylesbury, HP22
 7EP and as described in Chapter 2.
 
                                                                                                               Page 4 of 56
@@ -236,18 +236,14 @@ the same people. This LEASE is also granted subject to rights for the benefit of
 a PARTY to THIS LEASE as set out in Chapter 4.
 4. The LANDLORD has given YOU the following incentives in exchange for YOU paying the PRICE to the
 LANDLORD and accepting THIS LEASE of YOUR PROPERTY:
-
-Financial Incentives
 None
 
-Non-Financial Incentives
-None
 
                                                                                                              Page 5 of 56
                                     CHAPTER 2: YOUR PROPERTY
-1. YOUR PROPERTY is the APARTMENT numbered 157 within the BUILDING. The BUILDING forms part of the
-ESTATE. YOUR PROPERTY is on the second floor of the BUILDING and shown edged red and numbered 100
-on PLAN 1.
+1. YOUR PROPERTY is the APARTMENT numbered 169 within the BUILDING. The BUILDING forms part of the
+ESTATE. YOUR PROPERTY is on the First floor of the BUILDING and shown edged red and numbered 90 on
+PLAN 1.
 2. YOUR PROPERTY includes:
      all interior fixtures and fittings including any fitted cupboards, bathroom and kitchen equipment,
       radiators, plumbing and wiring;
@@ -1490,7 +1486,7 @@ recovered as part of the Service Charge as set out in Clause 10 of Chapter 6 of 
      AUTHORITY: any local highway, drainage or planning authority and any undertaker or company
       responsible for the supply of water, gas, electricity, communication media or similar services.
      BUILDING: the BUILDING which forms part of the ESTATE and includes YOUR PROPERTY At the date of
-      THIS LEASE, the BUILDING is known as Block A2 and is shown on PLAN 1 but it will also include any
+      THIS LEASE, the BUILDING is known as Block A1 and is shown on PLAN 1 but it will also include any
       additions and alterations made to it by the LANDLORD from time to time. It is made up of the LETTABLE
       UNITS, the COMMON PARTS and the SERVICED AREAS.
      BUILDING SERVICES: the meaning of BUILDING SERVICES is described in Chapter 6.
@@ -1991,9 +1987,9 @@ Witness occupation:
                                                                                                           Page 50 of 56
 
 SIGNED AS A DEED BY
-MIHAELA STARLUCIUC
+PALKUMAR MANDALA
 
-Signature of MIHAELA STARLUCIUC:
+Signature of palkumar mandala:
 
 
 IN THE PRESENCE OF:
@@ -2019,9 +2015,9 @@ Witness occupation:
 
 
 SIGNED AS A DEED BY
-RAZVAN STARLUCIUC
+LAVANYA JYOTHI YANAMALA
 
-Signature of RAZVAN STARLUCIUC:
+Signature of Lavanya Jyothi Yanamala:
 
 
 IN THE PRESENCE OF:
