@@ -1,0 +1,154 @@
+{
+  "Workflows": [
+    {
+      "Path": null,
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [],
+      "ArgumentsSectionElementsOrder": null,
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Main.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "TransactionItem&StateMachine_1",
+        "SystemException&StateMachine_1",
+        "BusinessException&StateMachine_1",
+        "TransactionNumber&StateMachine_1",
+        "Config&StateMachine_1",
+        "RetryNumber&StateMachine_1",
+        "TransactionField2&StateMachine_1",
+        "TransactionField1&StateMachine_1",
+        "TransactionID&StateMachine_1",
+        "dt_TransactionData&StateMachine_1",
+        "ConsecutiveSystemExceptions&StateMachine_1",
+        "ShouldStop&Sequence_25"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_OrchestratorQueueName",
+        "in_OrchestratorQueueFolder"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Lease_Type_1.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "Lease_Input&Sequence_1",
+        "out1&Sequence_1",
+        "test1&Sequence_1",
+        "Title_Number&Sequence_1",
+        "adress_1&Sequence_1",
+        "tenant_1&Sequence_1",
+        "address_2&Sequence_1",
+        "address_3&Sequence_1",
+        "address_4&Sequence_1",
+        "lr_7&Sequence_1",
+        "edge&Sequence_1",
+        "plot&Sequence_1",
+        "Chapters&Sequence_1",
+        "index&Sequence_1",
+        "groud_rent&Sequence_1",
+        "groud_array&Sequence_1",
+        "dmc&Sequence_1",
+        "plot_number&Sequence_1",
+        "row_index&Sequence_1",
+        "current_datatable&Sequence_1",
+        "postal_address&Sequence_1",
+        "type_of_property&Sequence_1",
+        "parking_space&Sequence_1",
+        "purchaser&Sequence_1",
+        "developer&Sequence_1",
+        "rate&Sequence_1",
+        "completion_date&Sequence_1",
+        "document_fee&Sequence_1",
+        "reservation_fee&Sequence_1",
+        "tenure&Sequence_1",
+        "full_purchase_price&Sequence_1",
+        "incentive&Sequence_1",
+        "current_datatable&Sequence_11",
+        "Chapter&Sequence_5",
+        "regex_dynamic&Sequence_5"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_plot_number"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Contract_Type_1.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "contract_Input&Sequence_1",
+        "working_date_index&Sequence_1",
+        "plot_number&Sequence_1",
+        "percent&Sequence_1",
+        "out1&Sequence_1",
+        "test1&Sequence_1",
+        "Title_Number&Sequence_1",
+        "adress_1&Sequence_1",
+        "tenant_1&Sequence_1",
+        "address_2&Sequence_1",
+        "address_3&Sequence_1",
+        "address_4&Sequence_1",
+        "lr_7&Sequence_1",
+        "edge&Sequence_1",
+        "plot&Sequence_1",
+        "Chapters&Sequence_1",
+        "index&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "purchaser",
+        "developer",
+        "rate_percent",
+        "completion_date",
+        "document_fee",
+        "reservation_fee",
+        "tenure",
+        "full_purchase_price",
+        "incentive"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Search_Questions.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [],
+      "ArgumentsSectionElementsOrder": [],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Login_Docusorus.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "dt&Sequence_7",
+        "variable1&Sequence_7",
+        "question_counter&Sequence_1",
+        "row_index&Sequence_6",
+        "answer_received&Sequence_6",
+        "dt_TransactionData&Sequence_1",
+        "dt&Sequence_5",
+        "variable1&Sequence_5",
+        "SignUP_exist&Sequence_2"
+      ],
+      "ArgumentsSectionElementsOrder": [],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "test.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "answer&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    }
+  ]
+}
